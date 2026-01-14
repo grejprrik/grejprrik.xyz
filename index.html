@@ -1,1 +1,271 @@
-<h1>umyju si dirku, potom mam hezkou skvirku</h1>
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Štěpán</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --card-bg: #161616;
+            --accent: #ff4d4d; /* Červená jako L4D/CS */
+            --text: #ededed;
+            --text-dim: #a0a0a0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh; /* Zajistí, že footer bude dole */
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            margin: auto; /* Pro centrování */
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            color: var(--accent);
+            font-weight: 300;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            border-left: 4px solid var(--accent);
+            padding-left: 15px;
+            color: var(--text);
+            font-weight: 700;
+        }
+
+        /* Info List */
+        .info-list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 60px;
+            color: var(--text-dim);
+            text-align: center;
+        }
+
+        .info-list li {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .info-list a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .info-list a:hover {
+            color: var(--text);
+        }
+
+        /* Sekce Hry */
+        .game-grid, .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Trochu větší karty */
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+
+        .game-card, .social-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #222;
+            position: relative; /* Pro ikonu hry */
+        }
+
+        .game-card:hover, .social-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(255, 77, 77, 0.1);
+            border-color: var(--accent);
+        }
+
+        .game-banner {
+            width: 100%;
+            height: 120px; /* Zmenšený banner */
+            background-size: cover;
+            background-position: center;
+            background-color: #333;
+            position: relative;
+        }
+
+        .game-icon {
+            position: absolute;
+            bottom: 10px; /* Posunul jsem to z horního rohu na spodek, působí to líp */
+            left: 10px;
+            width: 50px;
+            height: 50px;
+            background-color: #000000;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            border: 1px solid var(--accent);
+            overflow: hidden;
+        }
+        .game-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .game-info, .social-info {
+            padding: 20px;
+            text-align: center;
+        }
+        .game-info h3, .social-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+        .game-info p, .social-info p {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            margin-bottom: 0;
+        }
+
+        /* Ikony her - zatím jen barva, obrázky si dodáš sám */
+        .l4d-banner { background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://via.placeholder.com/600x200?text=Left+4+Dead+Banner'); }
+        .css-banner { background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://via.placeholder.com/600x200?text=CS+Source+Banner'); }
+        
+        /* Sociální sítě */
+        .social-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 150px;
+            text-align: center;
+        }
+        .social-card i {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+        .social-card a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 700;
+        }
+        .social-card a:hover {
+            color: var(--accent);
+        }
+
+        footer {
+            margin-top: 80px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            border-top: 1px solid #222;
+            padding-top: 40px;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2.5rem; }
+            .subtitle { font-size: 1rem; }
+            .section-title { font-size: 1.5rem; }
+            .info-list li { font-size: 1rem; }
+            .game-grid, .social-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>grejprrik (Štěpán)</h1>
+            <p class="subtitle"></p>
+        </header>
+
+        <ul class="info-list">
+            <li>Studuji na <a href="https://www.goah.cz" target="_blank">GOAH Hodonín</a></li>
+            <li>Hodonín, CZ</li>
+        </ul>
+
+        <h2 class="section-title">Oblíbené hry</h2>
+        <div class="game-grid">
+            <div class="game-card">
+                <div class="game-banner l4d-banner">
+                    <div class="game-icon">
+                        <img src="https://via.placeholder.com/50?text=L4D" alt="Left 4 Dead Icon">
+                    </div>
+                </div>
+                <div class="game-info">
+                    <h3>Left 4 Dead 2</h3>
+                    <p>Oblíbená mapa: No Mercy</p>
+                    <p style="font-size:0.8rem; color:#666; margin-top:5px;"></p> </div>
+            </div>
+
+            <div class="game-card">
+                <div class="game-banner css-banner">
+                    <div class="game-icon">
+                        <img src="https://via.placeholder.com/50?text=CSS" alt="CS: Source Icon">
+                    </div>
+                </div>
+                <div class="game-info">
+                    <h3>Counter-Strike: Source</h3>
+                    <p>Ano, hraju gun games jak ubožák</p>
+                    <p style="font-size:0.8rem; color:#666; margin-top:5px;"></p> </div>
+            </div>
+        </div>
+
+        <h2 class="section-title">Odkazy</h2>
+        <div class="social-grid">
+            <div class="social-card">
+                <i class="fab fa-github"></i>
+                <h3>GitHub</h3>
+                <p><a href="https://github.com/grejprrik" target="_blank">@grejprrik</a></p>
+            </div>
+            <div class="social-card">
+                <i class="fab fa-instagram"></i>
+                <h3>Instagram (Fotografie)</h3>
+                <p><a href="https://instagram.com/puddle_of_cum" target="_blank">@puddle_of_cum</a></p>
+            </div>
+            </div>
+
+        <footer>
+            <p>&copy; 2026 | nevim</p>
+        </footer>
+    </div>
+
+</body>
+</html>
