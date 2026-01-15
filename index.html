@@ -189,8 +189,25 @@
             max-width: 800px;
             width: 100%;
             margin: auto;
-            animation: fadeIn 1.5s ease-out;
         }
+
+        /* Scroll animations */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Stagger animation delays for child elements */
+        .scroll-reveal.delay-1 { transition-delay: 0.1s; }
+        .scroll-reveal.delay-2 { transition-delay: 0.2s; }
+        .scroll-reveal.delay-3 { transition-delay: 0.3s; }
+        .scroll-reveal.delay-4 { transition-delay: 0.4s; }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
@@ -922,12 +939,12 @@
     </nav>
 
     <div class="container">
-        <header id="home">
+        <header id="home" class="scroll-reveal">
             <h1>grejprrik (Štěpán)</h1>
             <p class="subtitle"></p>
         </header>
 
-        <div class="info-discord-container">
+        <div class="info-discord-container scroll-reveal delay-1">
             <ul class="info-list">
                 <li>
                     <span id="lang-studying">Studuji na</span> 
@@ -984,8 +1001,8 @@
             </div>
         </div>
 
-        <h2 class="section-title" id="lang-games-title">Oblíbené hry</h2>
-        <div class="game-grid">
+        <h2 class="section-title scroll-reveal" id="lang-games-title">Oblíbené hry</h2>
+        <div class="game-grid scroll-reveal delay-1">
             <div class="game-card">
                 <div class="game-banner postal2-banner">
                     <div class="game-icon">
@@ -1011,8 +1028,8 @@
             </div>
         </div>
 
-        <h2 class="section-title" id="lang-albums-title">Oblíbená alba</h2>
-        <div class="music-grid">
+        <h2 class="section-title scroll-reveal" id="lang-albums-title">Oblíbená alba</h2>
+        <div class="music-grid scroll-reveal delay-1">
             <div class="music-card">
                 <img src="https://github.com/grejprrik/grejprrik.xyz/blob/main/images/hybrid.jpg?raw=true" alt="Album 1" class="music-cover">
                 <div class="music-overlay">
@@ -1039,8 +1056,8 @@
             </div>
         </div>
 
-        <h2 class="section-title" id="lang-links-title">Odkazy</h2>
-        <div class="social-grid">
+        <h2 class="section-title scroll-reveal" id="lang-links-title">Odkazy</h2>
+        <div class="social-grid scroll-reveal delay-1">
             <a href="https://github.com/grejprrik" target="_blank" class="social-card">
                 <i class="fab fa-github"></i>
                 <h3>GitHub</h3>
@@ -1645,6 +1662,26 @@
 
         // Update every 3 seconds for faster song changes
         setInterval(updateDiscordPresence, 3000);
+
+        // Scroll animations with Intersection Observer
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all scroll-reveal elements
+        document.querySelectorAll('.scroll-reveal').forEach(element => {
+            observer.observe(element);
+        });
     </script>
 </body>
 </html>
