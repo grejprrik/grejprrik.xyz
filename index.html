@@ -17,6 +17,93 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
+        /* Hamburger Menu */
+        .menu-toggle {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--card-bg);
+            border: 1px solid #222;
+            border-radius: 8px;
+            cursor: pointer;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+
+        .menu-toggle:hover {
+            background: #1f1f1f;
+            border-color: var(--accent);
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--text);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        .nav-menu {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100vh;
+            background: var(--card-bg);
+            border-left: 1px solid #222;
+            padding: 100px 30px 30px;
+            z-index: 9999;
+            transition: right 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-menu.active {
+            right: 0;
+        }
+
+        .nav-menu ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .nav-menu ul li {
+            margin-bottom: 25px;
+        }
+
+        .nav-menu ul li a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 700;
+            transition: color 0.3s ease;
+            display: block;
+            padding: 10px 0;
+        }
+
+        .nav-menu ul li a:hover,
+        .nav-menu ul li a.active {
+            color: var(--accent);
+        }
+
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg);
@@ -391,10 +478,25 @@
             .game-grid, .social-grid { grid-template-columns: 1fr; }
             .music-grid { grid-template-columns: repeat(2, 1fr); }
             .school-info-box { display: none; }
+            .menu-toggle { top: 20px; right: 20px; width: 45px; height: 45px; }
+            .nav-menu { width: 250px; right: -250px; }
         }
     </style>
 </head>
 <body>
+    <!-- Hamburger Menu -->
+    <div class="menu-toggle" id="menuToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <nav class="nav-menu" id="navMenu">
+        <ul>
+            <li><a href="index.html" class="active" id="nav-home">Domů</a></li>
+            <li><a href="gallery.html" id="nav-gallery">Fotogalerie</a></li>
+        </ul>
+    </nav>
 
     <div class="container">
         <header id="home">
@@ -518,7 +620,9 @@
                 css_desc: "Ano, hraju gun games jak ubožák",
                 albums_title: "Oblíbená alba",
                 links_title: "Odkazy",
-                insta_title: "Instagram (Fotografie)"
+                insta_title: "Instagram (Fotografie)",
+                nav_home: "Domů",
+                nav_gallery: "Fotogalerie"
             },
             en: {
                 studying: "I study at",
@@ -529,7 +633,9 @@
                 css_desc: "Yes, I play gun games like a loser",
                 albums_title: "Favorite Albums",
                 links_title: "Links",
-                insta_title: "Instagram (Photography)"
+                insta_title: "Instagram (Photography)",
+                nav_home: "Home",
+                nav_gallery: "Gallery"
             }
         };
 
@@ -543,6 +649,8 @@
             document.getElementById('lang-albums-title').textContent = translations[lang].albums_title;
             document.getElementById('lang-links-title').textContent = translations[lang].links_title;
             document.getElementById('lang-insta-title').textContent = translations[lang].insta_title;
+            document.getElementById('nav-home').textContent = translations[lang].nav_home;
+            document.getElementById('nav-gallery').textContent = translations[lang].nav_gallery;
             
             localStorage.setItem('preferredLang', lang);
         }
@@ -561,6 +669,23 @@
                 setLanguage(userLang.startsWith('cs') ? 'cs' : 'en');
             }
         };
+
+        // Hamburger Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!menuToggle.contains(e.target) && !navMenu.contains(e.target)) {
+                menuToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
 
         function copyDiscord(event) {
             const discordUser = 'grejprrik.xyz';

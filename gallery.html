@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fotogalerie | grejprrik's site :3</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --card-bg: #161616;
+            --accent: #ff4d4d;
+            --text: #ededed;
+            --text-dim: #a0a0a0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: auto;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Hamburger Menu */
+        .menu-toggle {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--card-bg);
+            border: 1px solid #222;
+            border-radius: 8px;
+            cursor: pointer;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+
+        .menu-toggle:hover {
+            background: #1f1f1f;
+            border-color: var(--accent);
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--text);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        .nav-menu {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100vh;
+            background: var(--card-bg);
+            border-left: 1px solid #222;
+            padding: 100px 30px 30px;
+            z-index: 9999;
+            transition: right 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-menu.active {
+            right: 0;
+        }
+
+        .nav-menu ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .nav-menu ul li {
+            margin-bottom: 25px;
+        }
+
+        .nav-menu ul li a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 700;
+            transition: color 0.3s ease;
+            display: block;
+            padding: 10px 0;
+        }
+
+        .nav-menu ul li a:hover,
+        .nav-menu ul li a.active {
+            color: var(--accent);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: var(--accent);
+            font-weight: 300;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            border-left: 4px solid var(--accent);
+            padding-left: 15px;
+            color: var(--text);
+            font-weight: 700;
+        }
+
+        /* Gallery Styles */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+
+        .gallery-item {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #222;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(255, 77, 77, 0.1);
+            border-color: var(--accent);
+        }
+
+        .thumbnail {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Lightbox Viewer */
+        .viewer-overlay {
+            display: none;
+            position: fixed;
+            z-index: 10001;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .viewer-overlay.active {
+            display: flex;
+        }
+
+        .viewer-content {
+            max-width: 90%;
+            max-height: 75%;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+        }
+
+        .viewer-controls {
+            margin-top: 25px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        #download-link {
+            color: var(--text);
+            background: var(--accent);
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: background 0.3s ease, transform 0.2s ease;
+            display: inline-block;
+        }
+
+        #download-link:hover {
+            background: #ff6666;
+            transform: translateY(-2px);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            color: var(--text);
+            font-size: 50px;
+            font-weight: 300;
+            cursor: pointer;
+            transition: color 0.2s ease;
+            line-height: 1;
+        }
+
+        .close-btn:hover {
+            color: var(--accent);
+        }
+
+        footer {
+            margin-top: 80px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            border-top: 1px solid #222;
+            padding-top: 40px;
+        }
+
+        footer a {
+            color: var(--text-dim);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: var(--accent);
+        }
+
+        .lang-switch {
+            margin-top: 15px;
+            cursor: pointer;
+            text-decoration: underline;
+            font-size: 0.75rem;
+            opacity: 0.7;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2.5rem; }
+            .gallery-grid { grid-template-columns: 1fr; }
+            .close-btn { top: 15px; right: 20px; font-size: 40px; }
+            .viewer-content { max-width: 95%; max-height: 70%; }
+            .menu-toggle { top: 20px; right: 20px; width: 45px; height: 45px; }
+            .nav-menu { width: 250px; right: -250px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hamburger Menu -->
+    <div class="menu-toggle" id="menuToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <nav class="nav-menu" id="navMenu">
+        <ul>
+            <li><a href="index.html" id="nav-home">Domů</a></li>
+            <li><a href="gallery.html" class="active" id="nav-gallery">Fotogalerie</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <header>
+            <h1 id="page-title">Fotogalerie</h1>
+        </header>
+
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="images/photo1.jpg" alt="Photo 1" class="thumbnail">
+            </div>
+            <div class="gallery-item">
+                <img src="images/photo2.jpg" alt="Photo 2" class="thumbnail">
+            </div>
+            <div class="gallery-item">
+                <img src="images/photo3.jpg" alt="Photo 3" class="thumbnail">
+            </div>
+            <div class="gallery-item">
+                <img src="images/photo4.jpg" alt="Photo 4" class="thumbnail">
+            </div>
+            <div class="gallery-item">
+                <img src="images/photo5.jpg" alt="Photo 5" class="thumbnail">
+            </div>
+            <div class="gallery-item">
+                <img src="images/photo6.jpg" alt="Photo 6" class="thumbnail">
+            </div>
+        </div>
+
+        <div id="photo-viewer" class="viewer-overlay">
+            <span class="close-btn">&times;</span>
+            <img class="viewer-content" id="full-image" alt="Full size photo">
+            <div class="viewer-controls">
+                <a id="download-link" href="#" download id="download-text">Stáhnout plnou kvalitu</a>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 | <a href="mailto:contact@grejprrik.xyz">contact@grejprrik.xyz</a></p>
+            <p class="lang-switch" onclick="toggleLanguage()">Switch Language / Přepnout jazyk</p>
+        </footer>
+    </div>
+
+    <script>
+        const translations = {
+            cs: {
+                page_title: "Fotogalerie",
+                nav_home: "Domů",
+                nav_gallery: "Fotogalerie",
+                download_text: "Stáhnout plnou kvalitu"
+            },
+            en: {
+                page_title: "Photo Gallery",
+                nav_home: "Home",
+                nav_gallery: "Gallery",
+                download_text: "Download Full Quality"
+            }
+        };
+
+        function setLanguage(lang) {
+            document.getElementById('page-title').textContent = translations[lang].page_title;
+            document.getElementById('nav-home').textContent = translations[lang].nav_home;
+            document.getElementById('nav-gallery').textContent = translations[lang].nav_gallery;
+            document.getElementById('download-link').textContent = translations[lang].download_text;
+            
+            localStorage.setItem('preferredLang', lang);
+        }
+
+        function toggleLanguage() {
+            const current = localStorage.getItem('preferredLang') || (navigator.language.startsWith('cs') ? 'cs' : 'en');
+            setLanguage(current === 'cs' ? 'en' : 'cs');
+        }
+
+        window.onload = () => {
+            const savedLang = localStorage.getItem('preferredLang');
+            if (savedLang) {
+                setLanguage(savedLang);
+            } else {
+                const userLang = navigator.language || navigator.userLanguage;
+                setLanguage(userLang.startsWith('cs') ? 'cs' : 'en');
+            }
+        };
+
+        // Hamburger Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!menuToggle.contains(e.target) && !navMenu.contains(e.target)) {
+                menuToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
+
+        // Gallery Lightbox Functionality
+        const thumbnails = document.querySelectorAll('.thumbnail');
+        const viewer = document.getElementById('photo-viewer');
+        const fullImg = document.getElementById('full-image');
+        const downloadLink = document.getElementById('download-link');
+        const closeBtn = document.querySelector('.close-btn');
+
+        thumbnails.forEach(thumb => {
+            thumb.addEventListener('click', () => {
+                viewer.classList.add('active');
+                fullImg.src = thumb.src;
+                downloadLink.href = thumb.src;
+            });
+        });
+
+        closeBtn.onclick = () => viewer.classList.remove('active');
+        viewer.onclick = (e) => {
+            if (e.target === viewer) viewer.classList.remove('active');
+        };
+
+        // Close viewer with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') viewer.classList.remove('active');
+        });
+    </script>
+</body>
+</html>
