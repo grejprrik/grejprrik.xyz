@@ -254,6 +254,13 @@
             pointer-events: none;
         }
 
+        .image-info {
+            color: var(--text-dim);
+            font-size: 0.85rem;
+            margin-top: 10px;
+            text-align: center;
+        }
+
         #view-full-btn {
             color: var(--text);
             background: var(--accent);
@@ -443,6 +450,7 @@
                 <button id="view-full-btn"></button>
                 <a id="download-link" href="#" download title="Download Full Quality"><i class="fas fa-download"></i></a>
             </div>
+            <div class="image-info" id="image-info"></div>
         </div>
 
         <footer>
@@ -535,7 +543,33 @@
         const nextBtn = document.getElementById('next-btn');
         const loadingSpinner = document.getElementById('loading-spinner');
         const viewerControls = document.querySelector('.viewer-controls');
+        const imageInfo = document.getElementById('image-info');
         let currentIndex = 0;
+
+        async function getFileSize(url) {
+            try {
+                const response = await fetch(url, { method: 'HEAD' });
+                const contentLength = response.headers.get('Content-Length');
+                if (contentLength) {
+                    const bytes = parseInt(contentLength);
+                    if (bytes < 1024) return `${bytes} B`;
+                    if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+                    return `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
+                }
+            } catch (e) {
+                console.log('Could not fetch file size:', e);
+            }
+            return '?';
+        }
+
+        function updateImageInfo(imgElement, fileUrl) {
+            imgElement.onload = async function() {
+                const width = imgElement.naturalWidth;
+                const height = imgElement.naturalHeight;
+                const fileSize = await getFileSize(fileUrl);
+                imageInfo.textContent = `${width} × ${height} px • ${fileSize}`;
+            };
+        }
 
         function showImage(index, loadFull = false) {
             const thumb = thumbnails[index];
@@ -569,6 +603,7 @@
                 loadingSpinner.style.display = 'none';
                 fullImg.classList.add('loaded');
                 viewerControls.classList.remove('hidden');
+                updateImageInfo(fullImg, targetSrc);
             };
             
             preloadImg.onerror = function() {
@@ -582,6 +617,7 @@
                 // Add onload handler to the actual image as fallback
                 fullImg.onload = function() {
                     fullImg.classList.add('loaded');
+                    updateImageInfo(fullImg, targetSrc);
                 };
             };
             
