@@ -43,8 +43,8 @@ Source code for my personal website. Dark-themed portfolio showing my interests,
 │   └── medium/             # Medium viewing images (1920px max, ~450KB-1.4MB)
 ├── sounds/                 # Audio files for interactive sound effects
 │   ├── README.md           # Sound file specifications
-│   ├── postal.mp3          # Sound for POSTAL 2 game card (placeholder)
-│   └── counterstrike.mp3   # Sound for CS:S game card (placeholder)
+│   ├── postal.mp3          # Sound for POSTAL 2 game card
+│   └── counterstrike.mp3   # Sound for CS:S game card
 ├── generate_thumbnails.sh  # Script to create thumbnail images
 ├── generate_medium_images.sh # Script to create medium-sized images
 └── README.md               # This file
@@ -52,7 +52,7 @@ Source code for my personal website. Dark-themed portfolio showing my interests,
 
 ## Adding New Gallery Images
 
-### Step 1: Add Your Images
+### Step 1: Add Images
 Place full-resolution images in `images/` directory as `photo*.jpg` (e.g., photo7.jpg, photo8.jpg, etc.)
 
 ### Step 2: Generate Optimized Versions
@@ -98,4 +98,4 @@ python3 -m http.server 8000
 
 Then open http://localhost:8000
 
-Don't open HTML files directly (file:// protocol) - browsers will block image loading for security reasons.
+Don't open HTML files directly (file:// protocol), browsers will block image loading for security reasons.
