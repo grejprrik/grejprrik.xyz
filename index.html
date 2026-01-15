@@ -282,7 +282,7 @@
             position: relative;
         }
 
-        .game-card:hover, .social-card:hover {
+        .game-card:hover, .social-card:hover, .game-card:active, .social-card:active {
             transform: translateY(-8px);
             box-shadow: 0 10px 30px rgba(255, 77, 77, 0.1);
             border-color: var(--accent);
@@ -668,6 +668,10 @@
                 const userLang = navigator.language || navigator.userLanguage;
                 setLanguage(userLang.startsWith('cs') ? 'cs' : 'en');
             }
+            
+            // Preload sounds to avoid delay
+            postalSound.load();
+            counterstrikeSound.load();
         };
 
         // Hamburger Menu Toggle
@@ -703,6 +707,49 @@
                 }, 2500);
             });
         }
+
+        // Sound effects for game cards
+        // Each game has its own unique sound for both hover and click
+        const postalSound = new Audio('sounds/postal.mp3'); // Placeholder
+        const counterstrikeSound = new Audio('sounds/counterstrike.mp3'); // Placeholder
+        
+        // Set volume (adjust as needed)
+        postalSound.volume = 0.5;
+        counterstrikeSound.volume = 0.35;
+        
+        // Map sounds to each game card
+        const gameSounds = [
+            postalSound,        // First card (POSTAL 2)
+            counterstrikeSound  // Second card (Counter-Strike: Source)
+        ];
+        
+        // Add sound to all game cards
+        document.addEventListener('DOMContentLoaded', () => {
+            const gameCards = document.querySelectorAll('.game-card');
+            
+            gameCards.forEach((card, index) => {
+                const sound = gameSounds[index];
+                if (!sound) return; // Skip if no sound defined
+                
+                // Function to play the card's sound
+                const playSound = () => {
+                    sound.currentTime = 0; // Reset to start
+                    sound.play().catch(e => {
+                        // Silently catch errors (browser autoplay policy)
+                        console.log('Audio play prevented:', e);
+                    });
+                };
+                
+                // Desktop hover
+                card.addEventListener('mouseenter', playSound);
+                
+                // Mobile touch
+                card.addEventListener('touchstart', playSound, { passive: true });
+                
+                // Desktop click
+                card.addEventListener('mousedown', playSound);
+            });
+        });
     </script>
 </body>
 </html>
