@@ -182,7 +182,7 @@
 
         .thumbnail {
             width: 100%;
-            height: 280px;
+            aspect-ratio: 1 / 1;
             object-fit: cover;
             display: block;
         }
@@ -229,6 +229,10 @@
             height: 60px;
             animation: spin 1s linear infinite;
             position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -30px;
+            margin-left: -30px;
         }
 
         @keyframes spin {
@@ -241,6 +245,13 @@
             display: flex;
             gap: 15px;
             align-items: center;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+
+        .viewer-controls.hidden {
+            opacity: 0;
+            pointer-events: none;
         }
 
         #download-link {
@@ -335,7 +346,7 @@
 
         @media (max-width: 600px) {
             h1 { font-size: 2.5rem; }
-            .gallery-grid { grid-template-columns: 1fr; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
             .close-btn { top: 15px; right: 20px; font-size: 40px; }
             .viewer-content { max-width: 95%; max-height: 70%; }
             .menu-toggle { top: 20px; right: 20px; width: 45px; height: 45px; }
@@ -364,6 +375,7 @@
     <div class="container">
         <header>
             <h1 id="page-title">Fotogalerie</h1>
+            <p style="color: var(--text-dim); font-size: 0.9rem; margin-top: 10px;">(click)</p>
         </header>
 
         <div class="gallery-grid">
@@ -470,15 +482,17 @@
         const prevBtn = document.getElementById('prev-btn');
         const nextBtn = document.getElementById('next-btn');
         const loadingSpinner = document.getElementById('loading-spinner');
+        const viewerControls = document.querySelector('.viewer-controls');
         let currentIndex = 0;
 
         function showImage(index) {
             const thumb = thumbnails[index];
             const fullSrc = thumb.dataset.full || thumb.src;
             
-            // Show loading spinner and hide image
+            // Show loading spinner, hide image and controls
             loadingSpinner.style.display = 'block';
             fullImg.classList.remove('loaded');
+            viewerControls.classList.add('hidden');
             
             // Create a new image object to preload
             const preloadImg = new Image();
@@ -489,6 +503,7 @@
                 downloadLink.href = fullSrc;
                 loadingSpinner.style.display = 'none';
                 fullImg.classList.add('loaded');
+                viewerControls.classList.remove('hidden');
             };
             
             preloadImg.onerror = function() {
@@ -497,6 +512,7 @@
                 fullImg.src = fullSrc;
                 downloadLink.href = fullSrc;
                 loadingSpinner.style.display = 'none';
+                viewerControls.classList.remove('hidden');
                 
                 // Add onload handler to the actual image as fallback
                 fullImg.onload = function() {
