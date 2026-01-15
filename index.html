@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Štěpán</title>
+    <title>grejprrik's site</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         :root {
             --bg: #0a0a0a;
             --card-bg: #161616;
-            --accent: #ff4d4d; /* Červená jako L4D/CS */
+            --accent: #ff4d4d; /* Červená jako L4D */
             --text: #ededed;
             --text-dim: #a0a0a0;
         }
@@ -25,14 +25,14 @@
             overflow-x: hidden;
             display: flex;
             justify-content: center;
-            min-height: 100vh; /* Zajistí, že footer bude dole */
+            min-height: 100vh; /* abych mel ten vymrdany footer dole */
             padding: 40px 20px;
         }
 
         .container {
             max-width: 800px;
             width: 100%;
-            margin: auto; /* Pro centrování */
+            margin: auto; /* pro centrovani */
             animation: fadeIn 1.5s ease-out;
         }
 
@@ -93,6 +93,92 @@
             color: var(--text);
         }
 
+        /* School Info Box */
+        .school-info-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .school-info-box {
+            position: absolute;
+            left: 100%;
+            top: 50%;
+            transform: translateY(-50%) translateX(10px);
+            width: 280px;
+            background: var(--card-bg);
+            border: 1px solid #222;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .school-info-container:hover .school-info-box {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(-50%) translateX(15px);
+            pointer-events: auto;
+        }
+
+        .school-banner {
+            position: relative;
+            width: 100%;
+            height: 120px;
+            overflow: hidden;
+        }
+
+        .school-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.6), transparent);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .school-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .school-logo {
+            position: absolute;
+            bottom: 8px;
+            left: 8px;
+            width: 60px;
+            height: 60px;
+            border-radius: 0;
+            border: 2px solid var(--card-bg);
+            object-fit: cover;
+            z-index: 2;
+        }
+
+        .school-details {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .school-details h4 {
+            font-size: 1rem;
+            margin-bottom: 8px;
+            color: var(--text);
+            font-weight: 700;
+        }
+
+        .school-details p {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            line-height: 1.4;
+        }
+
         /* Sekce Hry */
         .game-grid, .social-grid {
             display: grid;
@@ -127,19 +213,20 @@
 
         .game-icon {
             position: absolute;
-            bottom: 10px; /* Posunul jsem to z horního rohu na spodek, působí to líp */
+            top: 100px;
             left: 10px;
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             background-color: #000000;
-            border-radius: 8px;
+            border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             box-shadow: 0 2px 10px rgba(0,0,0,0.5);
-            border: 1px solid var(--accent);
             overflow: hidden;
         }
+
+
         .game-icon img {
             width: 100%;
             height: 100%;
@@ -161,11 +248,71 @@
             margin-bottom: 0;
         }
 
-        /* Ikony her - zatím jen barva, obrázky si dodáš sám */
-        .l4d-banner { background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://via.placeholder.com/600x200?text=Left+4+Dead+Banner'); }
-        .css-banner { background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://via.placeholder.com/600x200?text=CS+Source+Banner'); }
+        /*  Bannery pro hry */
+        .postal2-banner { background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url('https://shared.steamstatic.com/store_item_assets/steam/apps/223470/library_hero_2x.jpg?t=1724871685'); }
+        .css-banner { background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url('https://shared.steamstatic.com/store_item_assets/steam/apps/240/header.jpg?t=1745368573'); }
         
-        /* Sociální sítě */
+        /* Music Section */
+        .music-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 60px;
+        }
+
+        .music-card {
+            aspect-ratio: 1;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #222;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .music-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(255, 77, 77, 0.1);
+            border-color: var(--accent);
+        }
+
+        .music-cover {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .music-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 0%, transparent 100%, rgba(0, 0, 0, 0) 100%);
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            transition: background 0.3s ease;
+            padding: 10px;
+        }
+
+        .music-card:hover .music-overlay {
+            background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.1) 40%, rgba(0, 0, 0, 0.4) 70%, rgba(0, 0, 0, 0.8) 100%);
+        }
+
+        .artist-name {
+            color: var(--text);
+            text-align: center;
+            font-size: 0.95rem;
+            font-weight: 700;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .music-card:hover .artist-name {
+            opacity: 1;
+        }
+        
         .social-card {
             display: flex;
             flex-direction: column;
@@ -173,19 +320,78 @@
             align-items: center;
             min-height: 150px;
             text-align: center;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
         }
+
+        .social-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(255, 77, 77, 0.1);
+            border-color: var(--accent);
+        }
+
         .social-card i {
             font-size: 2.5rem;
             color: var(--accent);
             margin-bottom: 15px;
         }
-        .social-card a {
-            text-decoration: none;
+
+        .social-card h3 {
             color: var(--text);
-            font-weight: 700;
         }
-        .social-card a:hover {
+
+        .social-handle {
+            color: var(--text-dim);
+            font-weight: 700;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .social-handle:hover {
             color: var(--accent);
+        }
+
+        /* Clipboard Notification */
+        .clipboard-notification {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ff4d4d;
+            color: #000;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 700;
+            z-index: 4000;
+            animation: slideInNotification 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes slideInNotification {
+            from {
+                transform: translateX(-50%) translateY(100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(-50%) translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideOutNotification {
+            from {
+                transform: translateX(-50%) translateY(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(-50%) translateY(100px);
+                opacity: 0;
+            }
+        }
+
+        .clipboard-notification.fadeOut {
+            animation: slideOutNotification 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
         }
 
         footer {
@@ -206,39 +412,123 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .lightbox-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2rem;
+            color: var(--accent);
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .lightbox-close:hover {
+            color: var(--text);
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .lightbox-nav button {
+            background: rgba(0, 0, 0, 0.5);
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .lightbox-nav button:hover {
+            background: var(--accent);
+            color: var(--bg);
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <header>
+        <header id="home">
             <h1>grejprrik (Štěpán)</h1>
             <p class="subtitle"></p>
         </header>
 
         <ul class="info-list">
-            <li>Studuji na <a href="https://www.goah.cz" target="_blank">GOAH Hodonín</a></li>
+            <li>Studuji na <span class="school-info-container"><a href="https://www.goah.cz" target="_blank">GOAH Hodonín</a>
+                <div class="school-info-box">
+                    <div class="school-banner">
+                        <img src="https://www.stredniskoly.com/data/USR_042_DEFAULT/goah_budova.jpg" alt="School Photo" class="school-photo">
+                        <img src="https://raw.githubusercontent.com/grejprrik/grejprrik.xyz/refs/heads/main/images/goah.png" alt="School Logo" class="school-logo">
+                    </div>
+                    <div class="school-details">
+                        <h4>GOAH Hodonín</h4>
+                        <p>Nastoupil v roce 2022</p>
+                    </div>
+                </div>
+            </span></li>
             <li>Hodonín, CZ</li>
         </ul>
 
         <h2 class="section-title">Oblíbené hry</h2>
         <div class="game-grid">
             <div class="game-card">
-                <div class="game-banner l4d-banner">
+                <div class="game-banner postal2-banner">
                     <div class="game-icon">
-                        <img src="https://via.placeholder.com/50?text=L4D" alt="Left 4 Dead Icon">
+                        <img src="https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/223470/da2f3bc2dbe6f5302de17c41d9f7e8f4f16a1243.ico" alt="POSTAL 2 Icon">
                     </div>
                 </div>
                 <div class="game-info">
-                    <h3>Left 4 Dead 2</h3>
-                    <p>Oblíbená mapa: No Mercy</p>
+                    <h3>POSTAL 2</h3>
+                    <p>Yeah, baby, I am the lizard king!</p>
                     <p style="font-size:0.8rem; color:#666; margin-top:5px;"></p> </div>
             </div>
 
             <div class="game-card">
                 <div class="game-banner css-banner">
                     <div class="game-icon">
-                        <img src="https://via.placeholder.com/50?text=CSS" alt="CS: Source Icon">
+                        <img src="https://cdn2.steamgriddb.com/icon/b305c4982512d2529ad05ee542a18133/32/256x256.png" alt="CS: Source Icon">
                     </div>
                 </div>
                 <div class="game-info">
@@ -248,17 +538,45 @@
             </div>
         </div>
 
+        <h2 class="section-title">Oblíbená alba</h2>
+        <div class="music-grid">
+            <div class="music-card">
+                <img src="https://github.com/grejprrik/grejprrik.xyz/blob/main/images/hybrid.jpg?raw=true" alt="Album 1" class="music-cover">
+                <div class="music-overlay">
+                    <div class="artist-name">Linkin Park</div>
+                </div>
+            </div>
+            <div class="music-card">
+                <img src="https://github.com/grejprrik/grejprrik.xyz/blob/main/images/freedom.jpg?raw=true" alt="Album 2" class="music-cover">
+                <div class="music-overlay">
+                    <div class="artist-name">Sublime</div>
+                </div>
+            </div>
+            <div class="music-card">
+                <img src="https://github.com/grejprrik/grejprrik.xyz/blob/main/images/amnesiac.jpg?raw=true" alt="Album 3" class="music-cover">
+                <div class="music-overlay">
+                    <div class="artist-name">Radiohead</div>
+                </div>
+            </div>
+            <div class="music-card">
+                <img src="https://github.com/grejprrik/grejprrik.xyz/blob/main/images/return.jpg?raw=true" alt="Album 4" class="music-cover">
+                <div class="music-overlay">
+                    <div class="artist-name"> Jamiroquai</div>
+                </div>
+            </div>
+        </div>
+
         <h2 class="section-title">Odkazy</h2>
         <div class="social-grid">
             <div class="social-card">
                 <i class="fab fa-github"></i>
                 <h3>GitHub</h3>
-                <p><a href="https://github.com/grejprrik" target="_blank">@grejprrik</a></p>
+                <p class="social-handle" onclick="copyToClipboard('grejprrik', event)">@grejprrik</p>
             </div>
             <div class="social-card">
                 <i class="fab fa-instagram"></i>
                 <h3>Instagram (Fotografie)</h3>
-                <p><a href="https://instagram.com/puddle_of_cum" target="_blank">@puddle_of_cum</a></p>
+                <p class="social-handle" onclick="copyToClipboard('puddle_of_cum', event)">@puddle_of_cum</p>
             </div>
             </div>
 
