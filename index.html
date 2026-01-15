@@ -628,18 +628,24 @@
             font-weight: 700;
             color: var(--text);
             margin-bottom: 3px;
-            white-space: nowrap;
             overflow: hidden;
-            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
+            line-height: 1.3;
         }
 
         .media-artist {
             font-size: 0.85rem;
             color: var(--text-dim);
             margin-bottom: 8px;
-            white-space: nowrap;
             overflow: hidden;
-            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
+            line-height: 1.3;
         }
 
         .progress-bar-container {
@@ -1296,7 +1302,83 @@
                     } else if (currentActivity.type === 2) { // Listening (no rich presence)
                         activityText = `<i class="fas fa-music"></i> Listening to ${currentActivity.name}`;
                     } else if (currentActivity.type === 3) { // Watching
-                        activityText = `<i class="fas fa-tv"></i> Watching ${currentActivity.name}`;
+                        // Check for rich presence (e.g., YouTube with thumbnail)
+                        const largeImage = currentActivity.assets?.large_image;
+                        if (largeImage && (currentActivity.details || currentActivity.timestamps)) {
+                            activityText = `<i class="fas fa-tv"></i> Watching ${currentActivity.name}`;
+                            showMediaPlayer = true;
+                            
+                            // Get thumbnail from assets
+                            const thumbnailUrl = largeImage.startsWith('mp:external/')
+                                ? largeImage.replace('mp:external/', 'https://media.discordapp.net/external/')
+                                : `https://cdn.discordapp.com/app-assets/${currentActivity.application_id}/${largeImage}.png`;
+                            document.getElementById('media-album-art').src = thumbnailUrl;
+                            
+                            document.getElementById('media-track').textContent = currentActivity.details || currentActivity.name;
+                            document.getElementById('media-artist').textContent = currentActivity.state || 'YouTube';
+                            
+                            // Store timestamps for real-time updates
+                            if (currentActivity.timestamps) {
+                                const start = currentActivity.timestamps.start;
+                                const end = currentActivity.timestamps.end;
+                                
+                                if (start && end) {
+                                    currentMediaSession = { start, end };
+                                    
+                                    // Start real-time progress updates
+                                    if (progressUpdateInterval) clearInterval(progressUpdateInterval);
+                                    progressUpdateInterval = setInterval(updateProgressBar, 1000);
+                                    updateProgressBar(); // Update immediately
+                                } else if (start) {
+                                    currentMediaSession = { start, end: null };
+                                    if (progressUpdateInterval) clearInterval(progressUpdateInterval);
+                                    progressUpdateInterval = setInterval(updateProgressBar, 1000);
+                                    updateProgressBar();
+                                }
+                            } else {
+                                currentMediaSession = null;
+                                if (progressUpdateInterval) clearInterval(progressUpdateInterval);
+                                document.getElementById('progress-bar').style.width = '0%';
+                                document.getElementById('time-elapsed').textContent = '0:00';
+                                document.getElementById('time-total').textContent = '--:--';
+                            }
+                        } else if (largeImage) {
+                            // Has icon but no rich presence data
+                            const iconUrl = largeImage.startsWith('mp:external/')
+                                ? largeImage.replace('mp:external/', 'https://media.discordapp.net/external/')
+                                : `https://cdn.discordapp.com/app-assets/${currentActivity.application_id}/${largeImage}.png`;
+                            
+                            // Show elapsed time next to username
+                            if (currentActivity.timestamps?.start) {
+                                activityStartTime = currentActivity.timestamps.start;
+                                const elapsed = Date.now() - activityStartTime;
+                                elapsedTimeEl.textContent = formatTime(elapsed);
+                                elapsedTimeEl.style.display = 'inline';
+                                
+                                // Start real-time updates
+                                if (elapsedTimeInterval) clearInterval(elapsedTimeInterval);
+                                elapsedTimeInterval = setInterval(updateElapsedTime, 1000);
+                            }
+                            
+                            activityText = `<img src="${iconUrl}" class="activity-icon" alt="${currentActivity.name}"> Watching ${currentActivity.name}`;
+                            
+                            // Add details below if available
+                            if (currentActivity.details || currentActivity.state) {
+                                setTimeout(() => {
+                                    const detailsDiv = document.createElement('div');
+                                    detailsDiv.className = 'activity-details';
+                                    if (currentActivity.details) {
+                                        detailsDiv.innerHTML += `<div>${currentActivity.details}</div>`;
+                                    }
+                                    if (currentActivity.state) {
+                                        detailsDiv.innerHTML += `<div>${currentActivity.state}</div>`;
+                                    }
+                                    activity.parentElement.appendChild(detailsDiv);
+                                }, 0);
+                            }
+                        } else {
+                            activityText = `<i class="fas fa-tv"></i> Watching ${currentActivity.name}`;
+                        }
                     } else if (currentActivity.assets?.large_image) {
                         // Generic activity with icon (e.g., VS Code)
                         const iconUrl = currentActivity.assets.large_image.startsWith('mp:external/')
@@ -1381,8 +1463,8 @@
         // Initial fetch
         updateDiscordPresence();
 
-        // Update every 15 seconds
-        setInterval(updateDiscordPresence, 15000);
+        // Update every 3 seconds for faster song changes
+        setInterval(updateDiscordPresence, 3000);
     </script>
 </body>
 </html>
