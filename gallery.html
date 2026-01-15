@@ -213,6 +213,27 @@
             object-fit: contain;
             border-radius: 8px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .viewer-content.loaded {
+            opacity: 1;
+        }
+
+        .loading-spinner {
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            border-top: 4px solid var(--accent);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+            position: absolute;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         .viewer-controls {
@@ -370,6 +391,7 @@
             <span class="close-btn">&times;</span>
             <span class="nav-arrow left" id="prev-btn">&#8249;</span>
             <span class="nav-arrow right" id="next-btn">&#8250;</span>
+            <div class="loading-spinner" id="loading-spinner"></div>
             <img class="viewer-content" id="full-image" alt="Full size photo">
             <div class="viewer-controls">
                 <a id="download-link" href="#" download id="download-text">Stáhnout plnou kvalitu</a>
@@ -447,13 +469,44 @@
         const closeBtn = document.querySelector('.close-btn');
         const prevBtn = document.getElementById('prev-btn');
         const nextBtn = document.getElementById('next-btn');
+        const loadingSpinner = document.getElementById('loading-spinner');
         let currentIndex = 0;
 
         function showImage(index) {
             const thumb = thumbnails[index];
             const fullSrc = thumb.dataset.full || thumb.src;
-            fullImg.src = fullSrc;
-            downloadLink.href = fullSrc;
+            
+            // Show loading spinner and hide image
+            loadingSpinner.style.display = 'block';
+            fullImg.classList.remove('loaded');
+            
+            // Create a new image object to preload
+            const preloadImg = new Image();
+            
+            preloadImg.onload = function() {
+                // Image loaded successfully
+                fullImg.src = fullSrc;
+                downloadLink.href = fullSrc;
+                loadingSpinner.style.display = 'none';
+                fullImg.classList.add('loaded');
+            };
+            
+            preloadImg.onerror = function() {
+                // If preload fails, try loading directly anyway
+                console.warn('Failed to preload image, attempting direct load:', fullSrc);
+                fullImg.src = fullSrc;
+                downloadLink.href = fullSrc;
+                loadingSpinner.style.display = 'none';
+                
+                // Add onload handler to the actual image as fallback
+                fullImg.onload = function() {
+                    fullImg.classList.add('loaded');
+                };
+            };
+            
+            // Start preloading
+            preloadImg.src = fullSrc;
+            
             currentIndex = index;
             
             // Hide/show arrows based on position
