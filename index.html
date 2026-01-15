@@ -156,10 +156,24 @@
             font-weight: 700;
         }
 
+        .info-discord-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        @media (min-width: 768px) {
+            .info-discord-container {
+                grid-template-columns: 1fr 1fr;
+                align-items: center;
+            }
+        }
+
         .info-list {
             list-style: none;
             padding: 0;
-            margin-bottom: 60px;
+            margin-bottom: 0;
             color: var(--text-dim);
             text-align: center;
         }
@@ -473,6 +487,183 @@
             opacity: 0.7;
         }
 
+        /* Discord Widget */
+        .discord-widget {
+            background: var(--card-bg);
+            border: 1px solid #222;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        @media (max-width: 767px) {
+            .discord-widget {
+                margin: 0 auto;
+            }
+        }
+
+        .discord-widget:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(255, 77, 77, 0.1);
+            border-color: var(--accent);
+        }
+
+        .discord-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .discord-avatar img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+        }
+
+        .discord-status {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 3px solid var(--card-bg);
+        }
+
+        .discord-status.online { background: #23a559; }
+        .discord-status.idle { background: #f0b232; }
+        .discord-status.dnd { background: #f23f43; }
+        .discord-status.offline { background: #80848e; }
+
+        .discord-info {
+            flex: 1;
+        }
+
+        .discord-username {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .elapsed-time {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: var(--accent);
+        }
+
+        .discord-activity {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .discord-activity i {
+            font-size: 0.85rem;
+        }
+
+        .activity-icon {
+            width: 16px;
+            height: 16px;
+            border-radius: 4px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .activity-details {
+            margin-top: 4px;
+            padding-left: 21px;
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            line-height: 1.4;
+        }
+
+        .activity-details div {
+            margin-bottom: 2px;
+        }
+
+        /* Expanded Media Player */
+        .media-player {
+            display: none;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #222;
+        }
+
+        .media-player.active {
+            display: block;
+        }
+
+        .media-content {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .media-album-art {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .media-details {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .media-track {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 3px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .media-artist {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            margin-bottom: 8px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 4px;
+            background: #222;
+            border-radius: 2px;
+            overflow: hidden;
+            margin-bottom: 5px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .progress-time {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: var(--text-dim);
+        }
+
         @media (max-width: 600px) {
             h1 { font-size: 2.5rem; }
             .game-grid, .social-grid { grid-template-columns: 1fr; }
@@ -480,6 +671,89 @@
             .school-info-box { display: none; }
             .menu-toggle { top: 20px; right: 20px; width: 45px; height: 45px; }
             .nav-menu { width: 250px; right: -250px; }
+            
+            /* Reduce body padding on mobile for more width */
+            body {
+                padding: 40px 10px;
+            }
+            
+            /* Discord widget mobile adjustments */
+            .discord-widget {
+                padding: 12px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            
+            .discord-widget > div {
+                width: 100%;
+                min-width: 0;
+            }
+            
+            .discord-widget > div > div:first-child {
+                width: 100%;
+                min-width: 0;
+            }
+            
+            .discord-info {
+                min-width: 0;
+                overflow: hidden;
+            }
+            
+            .discord-avatar {
+                width: 45px;
+                height: 45px;
+                flex-shrink: 0;
+            }
+            
+            .discord-status {
+                width: 14px;
+                height: 14px;
+                border-width: 2px;
+            }
+            
+            .discord-username {
+                font-size: 0.95rem;
+            }
+            
+            .discord-activity {
+                font-size: 0.8rem;
+            }
+            
+            .media-player {
+                width: 100%;
+                min-width: 0;
+                margin-top: 10px;
+                padding-top: 10px;
+            }
+            
+            .media-content {
+                gap: 10px;
+                width: 100%;
+                min-width: 0;
+            }
+            
+            .media-album-art {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .media-details {
+                min-width: 0;
+                overflow: hidden;
+            }
+            
+            .media-track {
+                font-size: 0.85rem;
+            }
+            
+            .media-artist {
+                font-size: 0.75rem;
+                margin-bottom: 6px;
+            }
+            
+            .progress-time {
+                font-size: 0.7rem;
+            }
         }
     </style>
 </head>
@@ -504,11 +778,12 @@
             <p class="subtitle"></p>
         </header>
 
-        <ul class="info-list">
-            <li>
-                <span id="lang-studying">Studuji na</span> 
-                <span class="school-info-container">
-                    <a href="https://www.goah.cz" target="_blank">GOAH Hodonín</a>
+        <div class="info-discord-container">
+            <ul class="info-list">
+                <li>
+                    <span id="lang-studying">Studuji na</span> 
+                    <span class="school-info-container">
+                        <a href="https://www.goah.cz" target="_blank">GOAH Hodonín</a>
                     <div class="school-info-box">
                         <div class="school-banner">
                             <img src="https://www.stredniskoly.com/data/USR_042_DEFAULT/goah_budova.jpg" alt="School Photo" class="school-photo">
@@ -520,9 +795,44 @@
                         </div>
                     </div>
                 </span>
-            </li>
-            <li id="lang-location">Hodonín, CZ</li>
-        </ul>
+                </li>
+                <li id="lang-location">Hodonín, CZ</li>
+            </ul>
+
+            <div class="discord-widget" id="discord-widget" style="display: none;">
+                <div style="width: 100%;">
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div class="discord-avatar">
+                            <img id="discord-avatar-img" src="" alt="Discord Avatar">
+                            <div id="discord-status-indicator" class="discord-status offline"></div>
+                        </div>
+                        <div class="discord-info">
+                            <div class="discord-username">
+                                <span id="discord-username">Loading...</span>
+                                <span class="elapsed-time" id="elapsed-time" style="display: none;"></span>
+                            </div>
+                            <div class="discord-activity" id="discord-activity"></div>
+                        </div>
+                    </div>
+                    <div class="media-player" id="media-player">
+                        <div class="media-content">
+                            <img id="media-album-art" class="media-album-art" src="" alt="Album Art">
+                            <div class="media-details">
+                                <div class="media-track" id="media-track"></div>
+                                <div class="media-artist" id="media-artist"></div>
+                                <div class="progress-bar-container">
+                                    <div class="progress-bar" id="progress-bar"></div>
+                                </div>
+                                <div class="progress-time">
+                                    <span id="time-elapsed">0:00</span>
+                                    <span id="time-total">0:00</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <h2 class="section-title" id="lang-games-title">Oblíbené hry</h2>
         <div class="game-grid">
@@ -732,6 +1042,9 @@
                 if (!sound) return; // Skip if no sound defined
                 
                 let touchUsed = false;
+                let touchStartX = 0;
+                let touchStartY = 0;
+                let touchMoved = false;
                 
                 // Function to play the card's sound
                 const playSound = () => {
@@ -749,10 +1062,30 @@
                     }
                 });
                 
-                // Mobile touch
-                card.addEventListener('touchstart', () => {
+                // Mobile touch - track start position
+                card.addEventListener('touchstart', (e) => {
                     touchUsed = true;
-                    playSound();
+                    touchMoved = false;
+                    touchStartX = e.touches[0].clientX;
+                    touchStartY = e.touches[0].clientY;
+                }, { passive: true });
+                
+                // Track if touch moved (scrolling)
+                card.addEventListener('touchmove', (e) => {
+                    const moveX = Math.abs(e.touches[0].clientX - touchStartX);
+                    const moveY = Math.abs(e.touches[0].clientY - touchStartY);
+                    
+                    // If moved more than 10px, consider it a scroll
+                    if (moveX > 10 || moveY > 10) {
+                        touchMoved = true;
+                    }
+                }, { passive: true });
+                
+                // Only play sound if touch didn't move (was a tap, not scroll)
+                card.addEventListener('touchend', () => {
+                    if (!touchMoved) {
+                        playSound();
+                    }
                 }, { passive: true });
                 
                 // Desktop click (skip if touch was used)
@@ -763,6 +1096,293 @@
                 });
             });
         });
+
+        // Discord Presence Widget using Lanyard API
+        const DISCORD_USER_ID = '1382801533279670462';
+        const LANYARD_API = `https://api.lanyard.rest/v1/users/${DISCORD_USER_ID}`;
+
+        let currentMediaSession = null;
+        let progressUpdateInterval = null;
+        let activityStartTime = null;
+        let elapsedTimeInterval = null;
+
+        function formatTime(ms) {
+            const totalSeconds = Math.floor(ms / 1000);
+            const hours = Math.floor(totalSeconds / 3600);
+            const mins = Math.floor((totalSeconds % 3600) / 60);
+            const secs = totalSeconds % 60;
+            
+            if (hours > 0) {
+                return `${hours}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+            }
+            return `${mins}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        function updateElapsedTime() {
+            if (!activityStartTime) return;
+            
+            const elapsed = Date.now() - activityStartTime;
+            const elapsedTimeEl = document.getElementById('elapsed-time');
+            if (elapsedTimeEl) {
+                elapsedTimeEl.textContent = formatTime(elapsed);
+            }
+        }
+
+        function updateProgressBar() {
+            if (!currentMediaSession) return;
+
+            const now = Date.now();
+            const start = currentMediaSession.start;
+            const end = currentMediaSession.end;
+            
+            if (start && end) {
+                const elapsed = now - start;
+                const total = end - start;
+                const progress = Math.min(100, Math.max(0, (elapsed / total) * 100));
+                
+                document.getElementById('progress-bar').style.width = `${progress}%`;
+                document.getElementById('time-elapsed').textContent = formatTime(elapsed);
+                document.getElementById('time-total').textContent = formatTime(total);
+            } else if (start) {
+                const elapsed = now - start;
+                document.getElementById('time-elapsed').textContent = formatTime(elapsed);
+            }
+        }
+
+        async function updateDiscordPresence() {
+            try {
+                const response = await fetch(LANYARD_API);
+                if (!response.ok) throw new Error('API request failed');
+                
+                const data = await response.json();
+                if (!data.success || !data.data) throw new Error('Invalid API response');
+                
+                const presence = data.data;
+                const widget = document.getElementById('discord-widget');
+                const avatarImg = document.getElementById('discord-avatar-img');
+                const statusIndicator = document.getElementById('discord-status-indicator');
+                const username = document.getElementById('discord-username');
+                const activity = document.getElementById('discord-activity');
+                const mediaPlayer = document.getElementById('media-player');
+                
+                // Clear previous activity details
+                const existingDetails = document.querySelector('.activity-details');
+                if (existingDetails) existingDetails.remove();
+                
+                // Set avatar
+                const avatarUrl = `https://cdn.discordapp.com/avatars/${presence.discord_user.id}/${presence.discord_user.avatar}.png?size=128`;
+                avatarImg.src = avatarUrl;
+                
+                // Set username
+                username.textContent = presence.discord_user.username;
+                
+                // Get elapsed time element
+                const elapsedTimeEl = document.getElementById('elapsed-time');
+                
+                // Set status
+                statusIndicator.className = `discord-status ${presence.discord_status}`;
+                
+                // Set activity
+                let activityText = '';
+                let showMediaPlayer = false;
+                
+                // Check for Spotify
+                if (presence.spotify) {
+                    activityText = `<i class="fab fa-spotify" style="color: #1DB954;"></i> Listening to Spotify`;
+                    showMediaPlayer = true;
+                    
+                    // Update media player
+                    document.getElementById('media-album-art').src = presence.spotify.album_art_url;
+                    document.getElementById('media-track').textContent = presence.spotify.song;
+                    document.getElementById('media-artist').textContent = presence.spotify.artist;
+                    
+                    // Store timestamps for real-time updates
+                    currentMediaSession = {
+                        start: presence.spotify.timestamps.start,
+                        end: presence.spotify.timestamps.end
+                    };
+                    
+                    // Start real-time progress updates
+                    if (progressUpdateInterval) clearInterval(progressUpdateInterval);
+                    progressUpdateInterval = setInterval(updateProgressBar, 1000);
+                    updateProgressBar(); // Update immediately
+                }
+                // Check for other activities with rich presence
+                else if (presence.activities && presence.activities.length > 0) {
+                    const currentActivity = presence.activities[0];
+                    
+                    // Check if activity has rich presence data (assets, details, state)
+                    if (currentActivity.type === 2 && (currentActivity.assets || currentActivity.details)) {
+                        activityText = `<i class="fas fa-music"></i> Listening`;
+                        showMediaPlayer = true;
+                        
+                        // Get album art from assets
+                        const largeImage = currentActivity.assets?.large_image;
+                        if (largeImage) {
+                            const artUrl = largeImage.startsWith('mp:external/')
+                                ? largeImage.replace('mp:external/', 'https://media.discordapp.net/external/')
+                                : `https://cdn.discordapp.com/app-assets/${currentActivity.application_id}/${largeImage}.png`;
+                            document.getElementById('media-album-art').src = artUrl;
+                        }
+                        
+                        document.getElementById('media-track').textContent = currentActivity.details || 'Unknown Track';
+                        document.getElementById('media-artist').textContent = currentActivity.state || 'Unknown Artist';
+                        
+                        // Store timestamps for real-time updates
+                        if (currentActivity.timestamps) {
+                            const start = currentActivity.timestamps.start;
+                            const end = currentActivity.timestamps.end;
+                            
+                            if (start && end) {
+                                currentMediaSession = { start, end };
+                                
+                                // Start real-time progress updates
+                                if (progressUpdateInterval) clearInterval(progressUpdateInterval);
+                                progressUpdateInterval = setInterval(updateProgressBar, 1000);
+                                updateProgressBar(); // Update immediately
+                            } else if (start) {
+                                currentMediaSession = { start, end: null };
+                                if (progressUpdateInterval) clearInterval(progressUpdateInterval);
+                                progressUpdateInterval = setInterval(updateProgressBar, 1000);
+                                updateProgressBar();
+                            }
+                        } else {
+                            currentMediaSession = null;
+                            if (progressUpdateInterval) clearInterval(progressUpdateInterval);
+                            document.getElementById('progress-bar').style.width = '0%';
+                            document.getElementById('time-elapsed').textContent = '0:00';
+                            document.getElementById('time-total').textContent = '--:--';
+                        }
+                    }
+                    else if (currentActivity.type === 0) { // Playing a game
+                        // Check for app icon
+                        const largeImage = currentActivity.assets?.large_image;
+                        if (largeImage) {
+                            const iconUrl = largeImage.startsWith('mp:external/')
+                                ? largeImage.replace('mp:external/', 'https://media.discordapp.net/external/')
+                                : `https://cdn.discordapp.com/app-assets/${currentActivity.application_id}/${largeImage}.png`;
+                            
+                            // Show elapsed time next to username
+                            if (currentActivity.timestamps?.start) {
+                                activityStartTime = currentActivity.timestamps.start;
+                                const elapsed = Date.now() - activityStartTime;
+                                elapsedTimeEl.textContent = formatTime(elapsed);
+                                elapsedTimeEl.style.display = 'inline';
+                                
+                                // Start real-time updates
+                                if (elapsedTimeInterval) clearInterval(elapsedTimeInterval);
+                                elapsedTimeInterval = setInterval(updateElapsedTime, 1000);
+                            }
+                            
+                            activityText = `<img src="${iconUrl}" class="activity-icon" alt="${currentActivity.name}"> Playing ${currentActivity.name}`;
+                            
+                            // Add details below if available
+                            if (currentActivity.details || currentActivity.state) {
+                                setTimeout(() => {
+                                    const detailsDiv = document.createElement('div');
+                                    detailsDiv.className = 'activity-details';
+                                    if (currentActivity.details) {
+                                        detailsDiv.innerHTML += `<div>${currentActivity.details}</div>`;
+                                    }
+                                    if (currentActivity.state) {
+                                        detailsDiv.innerHTML += `<div>${currentActivity.state}</div>`;
+                                    }
+                                    activity.parentElement.appendChild(detailsDiv);
+                                }, 0);
+                            }
+                        } else {
+                            activityText = `<i class="fas fa-gamepad"></i> Playing ${currentActivity.name}`;
+                        }
+                    } else if (currentActivity.type === 2) { // Listening (no rich presence)
+                        activityText = `<i class="fas fa-music"></i> Listening to ${currentActivity.name}`;
+                    } else if (currentActivity.type === 3) { // Watching
+                        activityText = `<i class="fas fa-tv"></i> Watching ${currentActivity.name}`;
+                    } else if (currentActivity.assets?.large_image) {
+                        // Generic activity with icon (e.g., VS Code)
+                        const iconUrl = currentActivity.assets.large_image.startsWith('mp:external/')
+                            ? currentActivity.assets.large_image.replace('mp:external/', 'https://media.discordapp.net/external/')
+                            : `https://cdn.discordapp.com/app-assets/${currentActivity.application_id}/${currentActivity.assets.large_image}.png`;
+                        
+                        // Show elapsed time next to username
+                        if (currentActivity.timestamps?.start) {
+                            activityStartTime = currentActivity.timestamps.start;
+                            const elapsed = Date.now() - activityStartTime;
+                            elapsedTimeEl.textContent = formatTime(elapsed);
+                            elapsedTimeEl.style.display = 'inline';
+                            
+                            // Start real-time updates
+                            if (elapsedTimeInterval) clearInterval(elapsedTimeInterval);
+                            elapsedTimeInterval = setInterval(updateElapsedTime, 1000);
+                        }
+                        
+                        activityText = `<img src="${iconUrl}" class="activity-icon" alt="${currentActivity.name}"> ${currentActivity.name}`;
+                        
+                        // Add details and state below
+                        if (currentActivity.details || currentActivity.state) {
+                            setTimeout(() => {
+                                const detailsDiv = document.createElement('div');
+                                detailsDiv.className = 'activity-details';
+                                if (currentActivity.details) {
+                                    detailsDiv.innerHTML += `<div>${currentActivity.details}</div>`;
+                                }
+                                if (currentActivity.state) {
+                                    detailsDiv.innerHTML += `<div>${currentActivity.state}</div>`;
+                                }
+                                activity.parentElement.appendChild(detailsDiv);
+                            }, 0);
+                        }
+                    } else {
+                        activityText = currentActivity.name;
+                    }
+                }
+                // Default status text
+                else {
+                    const statusTexts = {
+                        online: 'Online',
+                        idle: 'Idle',
+                        dnd: 'Do Not Disturb',
+                        offline: 'Offline'
+                    };
+                    activityText = statusTexts[presence.discord_status] || 'Online';
+                    elapsedTimeEl.style.display = 'none';
+                    
+                    // Clear elapsed time interval
+                    activityStartTime = null;
+                    if (elapsedTimeInterval) {
+                        clearInterval(elapsedTimeInterval);
+                        elapsedTimeInterval = null;
+                    }
+                }
+                
+                activity.innerHTML = activityText;
+                
+                // Show/hide media player
+                if (showMediaPlayer) {
+                    mediaPlayer.classList.add('active');
+                } else {
+                    mediaPlayer.classList.remove('active');
+                    // Clear progress updates when media player is hidden
+                    currentMediaSession = null;
+                    if (progressUpdateInterval) {
+                        clearInterval(progressUpdateInterval);
+                        progressUpdateInterval = null;
+                    }
+                }
+                
+                // Show widget
+                widget.style.display = 'flex';
+                
+            } catch (error) {
+                console.log('Failed to fetch Discord presence:', error);
+                // Fail silently - widget stays hidden
+            }
+        }
+
+        // Initial fetch
+        updateDiscordPresence();
+
+        // Update every 15 seconds
+        setInterval(updateDiscordPresence, 15000);
     </script>
 </body>
 </html>
