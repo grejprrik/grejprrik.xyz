@@ -1,41 +1,38 @@
 # grejprrik.xyz
 
-The source code for my personal landing page. A minimalist, dark-themed portfolio designed to showcase my interests, education, and social presence.
+Source code for my personal website. Dark-themed portfolio showing my interests, education, and social presence.
 
-## 🚀 Features
+## Features
 
 ### Main Page (index.html)
-* **Bilingual Support**: Integrated Czech and English translations with local storage to remember user preference.
-* **Dynamic UI**: 
-    * Hover-triggered school information card with custom branding.
-    * Responsive game and music grids with CSS-driven animations.
-    * "Copy to Clipboard" functionality for Discord handle with custom toast notifications.
-* **Interactive Sound Effects**: Game cards play unique sounds on hover/click (requires sound files - see [sounds/README.md](sounds/README.md))
-* **Hamburger Navigation Menu**: Smooth slide-in menu for mobile and desktop navigation.
-* **Modern Tech Stack**: Built using vanilla HTML5, CSS3 (Flexbox/Grid), and ES6+ JavaScript.
-* **Design Aesthetic**: High-contrast dark mode using the Inter font family and FontAwesome icons.
+- Bilingual support (Czech/English) with localStorage to remember preference
+- Hover-triggered school info card
+- Responsive game and music grids
+- Copy to clipboard for Discord handle with toast notifications
+- Interactive sound effects on game cards (requires sound files - see sounds/README.md)
+- Hamburger navigation menu for mobile and desktop
+- Built with vanilla HTML5, CSS3, and JavaScript
+- Dark mode aesthetic using Inter font and FontAwesome icons
 
 ### Gallery Page (gallery.html)
-* **Three-Tier Image System**: Optimized loading with small thumbnails, medium-resolution viewing images, and full-quality originals
-* **Lightbox Viewer**: Click thumbnails to view images in a fullscreen lightbox with smooth loading spinner
-* **Image Navigation**: Left/right arrows and keyboard controls (Arrow keys, Escape to close)
-* **Smart Image Loading**: 
-    - Grid displays tiny thumbnails (~40-150KB) for fast page load
-    - Viewer opens medium-quality images (~450KB-1.4MB) optimized for 1080p
-    - "View Full Quality" button loads original high-res on demand
-* **Download Support**: One-click download of full-resolution images
-* **Responsive Grid**: 2-column layout on mobile, auto-fill grid on desktop
-* **Bilingual Interface**: All text translates between Czech and English
+- Three-tier image system: thumbnails (~40-150KB), medium viewing images (~450KB-1.4MB), and full originals
+- Lightbox viewer with loading spinner
+- Navigation with left/right arrows and keyboard controls (Arrow keys, Escape to close)
+- Smart loading: fast thumbnails in grid, medium images in viewer, full-res on demand
+- Shows current resolution and file size for displayed image
+- One-click download icon for full-resolution images
+- 2-column layout on mobile, auto-fill grid on desktop
+- Bilingual interface
 
-## 🛠️ Built With
+## Tech Stack
 
-* **HTML5 / CSS3**: Semantic structure and custom CSS variables for easy theming.
-* **JavaScript**: Custom language switching logic, clipboard API integration, and image preloading system.
-* **Fonts**: [Inter](https://fonts.google.com/specimen/Inter) via Google Fonts.
-* **Icons**: [FontAwesome 6.0](https://fontawesome.com/).
-* **Image Processing**: ImageMagick for generating optimized thumbnails and medium-sized images.
+- HTML5 / CSS3 with custom CSS variables
+- JavaScript for language switching, clipboard API, and image preloading
+- Inter font from Google Fonts
+- FontAwesome 6.0 icons
+- ImageMagick for generating optimized images
 
-## 📂 Project Structure
+## Project Structure
 
 ```text
 ├── index.html              # Main landing page
@@ -53,30 +50,23 @@ The source code for my personal landing page. A minimalist, dark-themed portfoli
 └── README.md               # This file
 ```
 
-## 🖼️ Adding New Gallery Images
+## Adding New Gallery Images
 
 ### Step 1: Add Your Images
-Place your full-resolution images in the `images/` directory with the naming pattern `photo*.jpg` (e.g., `photo7.jpg`, `photo8.jpg`, etc.)
+Place full-resolution images in `images/` directory as `photo*.jpg` (e.g., photo7.jpg, photo8.jpg, etc.)
 
 ### Step 2: Generate Optimized Versions
-Run both scripts to automatically create thumbnails and medium versions:
+Run both scripts:
 
 ```bash
-# Generate thumbnails (400x400px squares)
-./generate_thumbnails.sh
-
-# Generate medium images (1920px max width for viewing)
-./generate_medium_images.sh
+./generate_thumbnails.sh      # Creates 400x400px squares
+./generate_medium_images.sh   # Creates 1920px max width for viewing
 ```
 
-Both scripts will:
-- Automatically detect all `photo*.jpg` files
-- Create optimized versions in `images/thumbs/` and `images/medium/`
-- Skip if source files don't exist
-- Regenerate existing ones if re-run (safe to run multiple times)
+Both scripts automatically detect all photo*.jpg files and create optimized versions. Safe to run multiple times.
 
 ### Step 3: Update gallery.html
-Add new gallery items to the grid:
+Add new gallery items:
 
 ```html
 <div class="gallery-item">
@@ -85,28 +75,27 @@ Add new gallery items to the grid:
 </div>
 ```
 
-**Note**: The three-tier system ensures fast loading:
-- **Thumbnails**: Quick grid display
-- **Medium**: Fast viewer loading (most people won't notice the difference from full-res)
-- **Full**: Available via "View Full Quality" button or download
+The three-tier system ensures fast loading:
+- Thumbnails: Quick grid display
+- Medium: Fast viewer loading
+- Full: Available via "View Full Quality" button or download
 
-## 🔊 Adding Sound Effects
+## Adding Sound Effects
 
-See [sounds/README.md](sounds/README.md) for detailed specifications. Quick summary:
+See sounds/README.md for details. Quick summary:
 - Format: MP3 (128-192kbps)
 - Length: 0.1-0.5 seconds
 - Target size: Under 20KB each
-- Files needed: `postal.mp3`, `counterstrike.mp3`
+- Files needed: postal.mp3, counterstrike.mp3
 
-## 🌐 Development
+## Development
 
-### Local Testing
-Run a local web server (required for proper image loading):
+Run a local web server for proper testing:
 
 ```bash
 python3 -m http.server 8000
 ```
 
-Then open http://localhost:8000 in your browser.
+Then open http://localhost:8000
 
-**Important**: Don't open HTML files directly (file:// protocol) as browsers will block image loading for security reasons.
+Don't open HTML files directly (file:// protocol) - browsers will block image loading for security reasons.
