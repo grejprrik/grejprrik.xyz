@@ -22,8 +22,8 @@
             position: fixed;
             top: 30px;
             right: 30px;
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             background: var(--card-bg);
             border: 1px solid #222;
             border-radius: 8px;
@@ -33,7 +33,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
             transition: background 0.3s ease, border-color 0.3s ease;
         }
 
@@ -60,6 +60,35 @@
 
         .menu-toggle.active span:nth-child(3) {
             transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Mute Button */
+        .mute-toggle {
+            position: fixed;
+            top: 85px;
+            right: 30px;
+            width: 45px;
+            height: 45px;
+            background: var(--card-bg);
+            border: 1px solid #222;
+            border-radius: 8px;
+            cursor: pointer;
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease, border-color 0.3s ease;
+            font-size: 1.2rem;
+            color: var(--text);
+        }
+
+        .mute-toggle:hover {
+            background: #1f1f1f;
+            border-color: var(--accent);
+        }
+
+        .mute-toggle.muted {
+            color: var(--accent);
         }
 
         .nav-menu {
@@ -675,7 +704,9 @@
             .game-grid, .social-grid { grid-template-columns: 1fr; }
             .music-grid { grid-template-columns: repeat(2, 1fr); }
             .school-info-box { display: none; }
-            .menu-toggle { top: 20px; right: 20px; width: 45px; height: 45px; }
+            .menu-toggle { top: 20px; right: 20px; width: 40px; height: 40px; gap: 4px; }
+            .menu-toggle span { width: 22px; }
+            .mute-toggle { top: 70px; right: 20px; width: 40px; height: 40px; font-size: 1rem; }
             .nav-menu { width: 250px; right: -250px; }
             
             /* Reduce body padding on mobile for more width */
@@ -769,6 +800,11 @@
         <span></span>
         <span></span>
         <span></span>
+    </div>
+
+    <!-- Mute Button -->
+    <div class="mute-toggle" id="muteToggle" title="Toggle sound">
+        <i class="fas fa-volume-up"></i>
     </div>
 
     <nav class="nav-menu" id="navMenu">
@@ -1041,6 +1077,28 @@
         
         // Add sound to all game cards
         document.addEventListener('DOMContentLoaded', () => {
+            let soundsMuted = false;
+
+            // Mute toggle functionality
+            const muteToggle = document.getElementById('muteToggle');
+            const muteIcon = muteToggle.querySelector('i');
+            
+            muteToggle.addEventListener('click', () => {
+                soundsMuted = !soundsMuted;
+                muteToggle.classList.toggle('muted');
+                
+                if (soundsMuted) {
+                    muteIcon.className = 'fas fa-volume-mute';
+                    // Stop all currently playing sounds
+                    gameSounds.forEach(sound => {
+                        sound.pause();
+                        sound.currentTime = 0;
+                    });
+                } else {
+                    muteIcon.className = 'fas fa-volume-up';
+                }
+            });
+
             const gameCards = document.querySelectorAll('.game-card');
             
             gameCards.forEach((card, index) => {
@@ -1054,6 +1112,7 @@
                 
                 // Function to play the card's sound
                 const playSound = () => {
+                    if (soundsMuted) return; // Don't play if muted
                     sound.currentTime = 0; // Reset to start
                     sound.play().catch(e => {
                         // Silently catch errors (browser autoplay policy)
