@@ -28,6 +28,7 @@ Source code for my personal website.
   - Card shadows that appear above wave animation
   - Hover effects with red accent glow
   - Mobile-optimized (animations disabled on mobile for performance)
+  - Animated favicon that cycles between two custom cat images every 500ms
   
 - **Interactive Elements**
   - Hamburger navigation menu (links to home, gallery, GitHub repo)
