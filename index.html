@@ -25,14 +25,14 @@
             overflow-x: hidden;
             display: flex;
             justify-content: center;
-            min-height: 100vh; /* abych mel ten vymrdany footer dole */
+            min-height: 100vh;
             padding: 40px 20px;
         }
 
         .container {
             max-width: 800px;
             width: 100%;
-            margin: auto; /* pro centrovani */
+            margin: auto;
             animation: fadeIn 1.5s ease-out;
         }
 
@@ -69,7 +69,6 @@
             font-weight: 700;
         }
 
-        /* Info List */
         .info-list {
             list-style: none;
             padding: 0;
@@ -182,7 +181,7 @@
         /* Sekce Hry */
         .game-grid, .social-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Trochu větší karty */
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
             margin-bottom: 60px;
         }
@@ -193,7 +192,7 @@
             overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             border: 1px solid #222;
-            position: relative; /* Pro ikonu hry */
+            position: relative;
         }
 
         .game-card:hover, .social-card:hover {
@@ -204,7 +203,7 @@
 
         .game-banner {
             width: 100%;
-            height: 120px; /* Zmenšený banner */
+            height: 120px;
             background-size: cover;
             background-position: center;
             background-color: #333;
@@ -248,11 +247,9 @@
             margin-bottom: 0;
         }
 
-        /*  Bannery pro hry */
         .postal2-banner { background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url('https://shared.steamstatic.com/store_item_assets/steam/apps/223470/library_hero_2x.jpg?t=1724871685'); }
         .css-banner { background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url('https://shared.steamstatic.com/store_item_assets/steam/apps/240/header.jpg?t=1745368573'); }
         
-        /* Music Section */
         .music-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -313,6 +310,7 @@
             opacity: 1;
         }
         
+        /* Links Formatting */
         .social-card {
             display: flex;
             flex-direction: column;
@@ -325,73 +323,41 @@
             transition: all 0.3s ease;
         }
 
-        .social-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 10px 30px rgba(255, 77, 77, 0.1);
-            border-color: var(--accent);
-        }
-
         .social-card i {
             font-size: 2.5rem;
             color: var(--accent);
             margin-bottom: 15px;
         }
 
-        .social-card h3 {
-            color: var(--text);
-        }
-
         .social-handle {
             color: var(--text-dim);
             font-weight: 700;
-            cursor: pointer;
             transition: color 0.2s;
         }
 
-        .social-handle:hover {
+        .social-card:hover .social-handle {
             color: var(--accent);
         }
 
-        /* Clipboard Notification */
-        .clipboard-notification {
+        /* Copy Notification Toast */
+        .copy-toast {
             position: fixed;
-            bottom: 20px;
+            bottom: 30px;
             left: 50%;
-            transform: translateX(-50%);
-            background: #ff4d4d;
-            color: #000;
-            padding: 12px 20px;
+            transform: translateX(-50%) translateY(100px);
+            background-color: var(--accent);
+            color: white;
+            padding: 12px 24px;
             border-radius: 8px;
             font-weight: 700;
-            z-index: 4000;
-            animation: slideInNotification 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            font-size: 0.9rem;
+            box-shadow: 0 4px 15px rgba(255, 77, 77, 0.4);
+            z-index: 9999;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        @keyframes slideInNotification {
-            from {
-                transform: translateX(-50%) translateY(100px);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(-50%) translateY(0);
-                opacity: 1;
-            }
-        }
-
-        @keyframes slideOutNotification {
-            from {
-                transform: translateX(-50%) translateY(0);
-                opacity: 1;
-            }
-            to {
-                transform: translateX(-50%) translateY(100px);
-                opacity: 0;
-            }
-        }
-
-        .clipboard-notification.fadeOut {
-            animation: slideOutNotification 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        .copy-toast.show {
+            transform: translateX(-50%) translateY(0);
         }
 
         footer {
@@ -403,87 +369,28 @@
             padding-top: 40px;
         }
 
+        footer a {
+            color: var(--text-dim);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: var(--accent);
+        }
+
+        .lang-switch {
+            margin-top: 15px;
+            cursor: pointer;
+            text-decoration: underline;
+            font-size: 0.75rem;
+            opacity: 0.7;
+        }
+
         @media (max-width: 600px) {
             h1 { font-size: 2.5rem; }
-            .subtitle { font-size: 1rem; }
-            .section-title { font-size: 1.5rem; }
-            .info-list li { font-size: 1rem; }
-            .game-grid, .social-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Lightbox */
-        .lightbox {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 3000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .lightbox.active {
-            display: flex;
-        }
-
-        .lightbox-content {
-            position: relative;
-            max-width: 90%;
-            max-height: 90%;
-        }
-
-        .lightbox-image {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 2rem;
-            color: var(--accent);
-            cursor: pointer;
-            background: rgba(0, 0, 0, 0.5);
-            border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
-            transition: all 0.2s ease;
-        }
-
-        .lightbox-close:hover {
-            color: var(--text);
-            background: rgba(0, 0, 0, 0.8);
-        }
-
-        .lightbox-nav {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 10px;
-        }
-
-        .lightbox-nav button {
-            background: rgba(0, 0, 0, 0.5);
-            color: var(--accent);
-            border: 1px solid var(--accent);
-            padding: 8px 15px;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .lightbox-nav button:hover {
-            background: var(--accent);
-            color: var(--bg);
+            .game-grid, .social-grid { grid-template-columns: 1fr; }
+            .music-grid { grid-template-columns: repeat(2, 1fr); }
+            .school-info-box { display: none; }
         }
     </style>
 </head>
@@ -496,22 +403,26 @@
         </header>
 
         <ul class="info-list">
-            <li>Studuji na <span class="school-info-container"><a href="https://www.goah.cz" target="_blank">GOAH Hodonín</a>
-                <div class="school-info-box">
-                    <div class="school-banner">
-                        <img src="https://www.stredniskoly.com/data/USR_042_DEFAULT/goah_budova.jpg" alt="School Photo" class="school-photo">
-                        <img src="https://raw.githubusercontent.com/grejprrik/grejprrik.xyz/refs/heads/main/images/goah.png" alt="School Logo" class="school-logo">
+            <li>
+                <span id="lang-studying">Studuji na</span> 
+                <span class="school-info-container">
+                    <a href="https://www.goah.cz" target="_blank">GOAH Hodonín</a>
+                    <div class="school-info-box">
+                        <div class="school-banner">
+                            <img src="https://www.stredniskoly.com/data/USR_042_DEFAULT/goah_budova.jpg" alt="School Photo" class="school-photo">
+                            <img src="https://raw.githubusercontent.com/grejprrik/grejprrik.xyz/refs/heads/main/images/goah.png" alt="School Logo" class="school-logo">
+                        </div>
+                        <div class="school-details">
+                            <h4>GOAH Hodonín</h4>
+                            <p id="lang-school-year">Nastoupil v roce 2022</p>
+                        </div>
                     </div>
-                    <div class="school-details">
-                        <h4>GOAH Hodonín</h4>
-                        <p>Nastoupil v roce 2022</p>
-                    </div>
-                </div>
-            </span></li>
-            <li>Hodonín, CZ</li>
+                </span>
+            </li>
+            <li id="lang-location">Hodonín, CZ</li>
         </ul>
 
-        <h2 class="section-title">Oblíbené hry</h2>
+        <h2 class="section-title" id="lang-games-title">Oblíbené hry</h2>
         <div class="game-grid">
             <div class="game-card">
                 <div class="game-banner postal2-banner">
@@ -521,8 +432,8 @@
                 </div>
                 <div class="game-info">
                     <h3>POSTAL 2</h3>
-                    <p>Yeah, baby, I am the lizard king!</p>
-                    <p style="font-size:0.8rem; color:#666; margin-top:5px;"></p> </div>
+                    <p id="lang-postal-desc">Yeah, baby, I am the lizard king!</p>
+                </div>
             </div>
 
             <div class="game-card">
@@ -533,12 +444,12 @@
                 </div>
                 <div class="game-info">
                     <h3>Counter-Strike: Source</h3>
-                    <p>Ano, hraju gun games jak ubožák</p>
-                    <p style="font-size:0.8rem; color:#666; margin-top:5px;"></p> </div>
+                    <p id="lang-css-desc">Ano, hraju gun games jak ubožák</p>
+                </div>
             </div>
         </div>
 
-        <h2 class="section-title">Oblíbená alba</h2>
+        <h2 class="section-title" id="lang-albums-title">Oblíbená alba</h2>
         <div class="music-grid">
             <div class="music-card">
                 <img src="https://github.com/grejprrik/grejprrik.xyz/blob/main/images/hybrid.jpg?raw=true" alt="Album 1" class="music-cover">
@@ -566,24 +477,107 @@
             </div>
         </div>
 
-        <h2 class="section-title">Odkazy</h2>
+        <h2 class="section-title" id="lang-links-title">Odkazy</h2>
         <div class="social-grid">
-            <div class="social-card">
+            <a href="https://github.com/grejprrik" target="_blank" class="social-card">
                 <i class="fab fa-github"></i>
                 <h3>GitHub</h3>
-                <p class="social-handle" onclick="copyToClipboard('grejprrik', event)">@grejprrik</p>
-            </div>
-            <div class="social-card">
+                <p class="social-handle">@grejprrik</p>
+            </a>
+            <a href="https://www.instagram.com/puddle_of_cum" target="_blank" class="social-card">
                 <i class="fab fa-instagram"></i>
-                <h3>Instagram (Fotografie)</h3>
-                <p class="social-handle" onclick="copyToClipboard('puddle_of_cum', event)">@puddle_of_cum</p>
+                <h3 id="lang-insta-title">Instagram (Fotografie)</h3>
+                <p class="social-handle">@puddle_of_cum</p>
+            </a>
+            <a href="https://steamcommunity.com/id/grejprrik/" target="_blank" class="social-card">
+                <i class="fab fa-steam"></i>
+                <h3>Steam</h3>
+                <p class="social-handle">@grejprrik</p>
+            </a>
+            <div class="social-card" onclick="copyDiscord(event)" style="cursor: pointer;">
+                <i class="fab fa-discord"></i>
+                <h3>Discord</h3>
+                <p class="social-handle">@grejprrik.xyz</p>
             </div>
-            </div>
+        </div>
 
         <footer>
-            <p>&copy; 2026 | nevim</p>
+            <p>&copy; 2026 | <a href="mailto:contact@grejprrik.xyz">contact@grejprrik.xyz</a></p>
+            <p class="lang-switch" onclick="toggleLanguage()">Switch Language / Přepnout jazyk</p>
         </footer>
     </div>
 
+    <script>
+        const translations = {
+            cs: {
+                studying: "Studuji na",
+                school_year: "Nastoupil v roce 2022",
+                location: "Hodonín, CZ",
+                games_title: "Oblíbené hry",
+                postal_desc: "Yeah, baby, I am the lizard king!",
+                css_desc: "Ano, hraju gun games jak ubožák",
+                albums_title: "Oblíbená alba",
+                links_title: "Odkazy",
+                insta_title: "Instagram (Fotografie)"
+            },
+            en: {
+                studying: "I study at",
+                school_year: "Joined in 2022",
+                location: "Hodonin, Czech Republic",
+                games_title: "Favorite Games",
+                postal_desc: "Yeah, baby, I am the lizard king!",
+                css_desc: "Yes, I play gun games like a loser",
+                albums_title: "Favorite Albums",
+                links_title: "Links",
+                insta_title: "Instagram (Photography)"
+            }
+        };
+
+        function setLanguage(lang) {
+            document.getElementById('lang-studying').textContent = translations[lang].studying;
+            document.getElementById('lang-school-year').textContent = translations[lang].school_year;
+            document.getElementById('lang-location').textContent = translations[lang].location;
+            document.getElementById('lang-games-title').textContent = translations[lang].games_title;
+            document.getElementById('lang-postal-desc').textContent = translations[lang].postal_desc;
+            document.getElementById('lang-css-desc').textContent = translations[lang].css_desc;
+            document.getElementById('lang-albums-title').textContent = translations[lang].albums_title;
+            document.getElementById('lang-links-title').textContent = translations[lang].links_title;
+            document.getElementById('lang-insta-title').textContent = translations[lang].insta_title;
+            
+            localStorage.setItem('preferredLang', lang);
+        }
+
+        function toggleLanguage() {
+            const current = localStorage.getItem('preferredLang') || (navigator.language.startsWith('cs') ? 'cs' : 'en');
+            setLanguage(current === 'cs' ? 'en' : 'cs');
+        }
+
+        window.onload = () => {
+            const savedLang = localStorage.getItem('preferredLang');
+            if (savedLang) {
+                setLanguage(savedLang);
+            } else {
+                const userLang = navigator.language || navigator.userLanguage;
+                setLanguage(userLang.startsWith('cs') ? 'cs' : 'en');
+            }
+        };
+
+        function copyDiscord(event) {
+            const discordUser = 'grejprrik.xyz';
+            navigator.clipboard.writeText(discordUser).then(() => {
+                let toast = document.querySelector('.copy-toast');
+                if (!toast) {
+                    toast = document.createElement('div');
+                    toast.className = 'copy-toast';
+                    document.body.appendChild(toast);
+                }
+                toast.textContent = `Discord tag "${discordUser}" copied!`;
+                toast.classList.add('show');
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 2500);
+            });
+        }
+    </script>
 </body>
 </html>
