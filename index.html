@@ -731,6 +731,8 @@
                 const sound = gameSounds[index];
                 if (!sound) return; // Skip if no sound defined
                 
+                let touchUsed = false;
+                
                 // Function to play the card's sound
                 const playSound = () => {
                     sound.currentTime = 0; // Reset to start
@@ -740,14 +742,25 @@
                     });
                 };
                 
-                // Desktop hover
-                card.addEventListener('mouseenter', playSound);
+                // Desktop hover (won't fire on touch devices)
+                card.addEventListener('mouseenter', () => {
+                    if (!touchUsed) {
+                        playSound();
+                    }
+                });
                 
                 // Mobile touch
-                card.addEventListener('touchstart', playSound, { passive: true });
+                card.addEventListener('touchstart', () => {
+                    touchUsed = true;
+                    playSound();
+                }, { passive: true });
                 
-                // Desktop click
-                card.addEventListener('mousedown', playSound);
+                // Desktop click (skip if touch was used)
+                card.addEventListener('mousedown', () => {
+                    if (!touchUsed) {
+                        playSound();
+                    }
+                });
             });
         });
     </script>
