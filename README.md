@@ -1,6 +1,6 @@
 # grejprrik.xyz
 
-Source code for my personal website. Dark-themed portfolio showing my interests, education, and social presence.
+Source code for my personal website.
 
 ## Features
 
