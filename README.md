@@ -5,11 +5,22 @@ Source code for my personal website.
 ## Features
 
 ### Main Page (index.html)
+- Live Discord presence widget using Lanyard API
+  - Shows current status (online/idle/dnd/offline)
+  - Real-time activity tracking with elapsed time
+  - Expanded media player for Spotify and YouTube with:
+    - Album/video thumbnails
+    - Track/video title and artist/channel
+    - Live progress bar and timestamps
+  - Program activity display (VS Code, games, etc.) with icons
+  - Updates every 3 seconds for near real-time sync
 - Bilingual support (Czech/English) with localStorage to remember preference
 - Hover-triggered school info card
 - Responsive game and music grids
 - Copy to clipboard for Discord handle with toast notifications
-- Interactive sound effects on game cards (requires sound files - see sounds/README.md)
+- Interactive sound effects on game cards with scroll-aware touch handling
+  - Desktop: Plays on hover or click
+  - Mobile: Only plays on tap (not when scrolling)
 - Hamburger navigation menu for mobile and desktop
 - Built with vanilla HTML5, CSS3, and JavaScript
 - Dark mode aesthetic using Inter font and FontAwesome icons
@@ -27,10 +38,17 @@ Source code for my personal website.
 ## Tech Stack
 
 - HTML5 / CSS3 with custom CSS variables
-- JavaScript for language switching, clipboard API, and image preloading
+- JavaScript for:
+  - Language switching and localStorage
+  - Clipboard API
+  - Image preloading
+  - Discord Lanyard API integration
+  - Real-time progress tracking
+  - Audio playback with touch event handling
 - Inter font from Google Fonts
 - FontAwesome 6.0 icons
 - ImageMagick for generating optimized images
+- Lanyard API for Discord Rich Presence (https://api.lanyard.rest/)
 
 ## Project Structure
 
@@ -97,5 +115,22 @@ python3 -m http.server 8000
 ```
 
 Then open http://localhost:8000
+
+### Discord Widget Configuration
+
+The Discord presence widget uses the Lanyard API. To change the Discord user:
+
+1. Find your Discord User ID (enable Developer Mode in Discord settings, right-click your profile)
+2. Update `DISCORD_USER_ID` in index.html:
+   ```javascript
+   const DISCORD_USER_ID = 'YOUR_USER_ID_HERE';
+   ```
+3. Join the Lanyard Discord server: https://discord.gg/lanyard
+
+Note: The widget displays:
+- Current Discord status and activities
+- Rich Presence data from apps like Spotify, YouTube, VS Code, and games
+- Real-time progress for media playback
+- Elapsed time for active programs
 
 Don't open HTML files directly (file:// protocol), browsers will block image loading for security reasons.
