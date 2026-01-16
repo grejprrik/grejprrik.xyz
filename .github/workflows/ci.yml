@@ -1,0 +1,19 @@
+name: Performance Check
+on: [push]
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Install & Build
+        run: |
+          npm install
+          npm run build
+          
+      - name: Run Lighthouse
+        uses: treosh/lighthouse-config-action@v10
+        with:
+          configPath: './lighthouserc.json'
+          uploadArtifacts: true # This saves the report so you can see what failed
