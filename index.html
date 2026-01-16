@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>grejprrik's site :3</title>
-    <link rel="icon" type="image/png" href="favicon1.png" id="favicon">
+    <link rel="icon" type="image/webp" href="favicon1.webp" id="favicon">
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet"></noscript>
     <style>
@@ -174,11 +174,6 @@
             100% {
                 transform: translateX(-50%);
             }
-        }
-
-        @font-face {
-            font-family: 'Inter';
-            font-display: swap;
         }
 
         body {
@@ -1039,25 +1034,25 @@
         <h2 class="section-title scroll-reveal" id="lang-albums-title">Oblíbená alba</h2>
         <div class="music-grid scroll-reveal delay-1">
             <div class="music-card">
-                <img src="images/thumbs/hybrid.jpg" alt="Album 1" class="music-cover" loading="lazy" width="200" height="200">
+                <img src="images/thumbs/hybrid.webp" alt="Album 1" class="music-cover" decoding="async" loading="lazy" width="200" height="200">
                 <div class="music-overlay">
                     <div class="artist-name">Linkin Park</div>
                 </div>
             </div>
             <div class="music-card">
-                <img src="images/thumbs/freedom.jpg" alt="Album 2" class="music-cover" loading="lazy" width="200" height="200">
+                <img src="images/thumbs/freedom.webp" alt="Album 2" class="music-cover" decoding="async" loading="lazy" width="200" height="200">
                 <div class="music-overlay">
                     <div class="artist-name">Sublime</div>
                 </div>
             </div>
             <div class="music-card">
-                <img src="images/thumbs/amnesiac.jpg" alt="Album 3" class="music-cover" loading="lazy" width="200" height="200">
+                <img src="images/thumbs/amnesiac.webp" alt="Album 3" class="music-cover" decoding="async" loading="lazy" width="200" height="200">
                 <div class="music-overlay">
                     <div class="artist-name">Radiohead</div>
                 </div>
             </div>
             <div class="music-card">
-                <img src="images/thumbs/return.jpg" alt="Album 4" class="music-cover" loading="lazy" width="200" height="200">
+                <img src="images/thumbs/return.webp" alt="Album 4" class="music-cover" decoding="async" loading="lazy" width="200" height="200">
                 <div class="music-overlay">
                     <div class="artist-name"> Jamiroquai</div>
                 </div>
@@ -1706,7 +1701,7 @@
         });
 
         // Animated favicon - cycles every 500ms
-        const favicons = ['favicon1.png', 'favicon2.png'];
+        const favicons = ['favicon1.webp', 'favicon2.webp'];
         let currentFavicon = 0;
         const faviconLink = document.getElementById('favicon');
         
