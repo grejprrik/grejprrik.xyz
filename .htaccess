@@ -1,10 +1,16 @@
 # Cache static assets for 1 year
 <FilesMatch "\.(jpg|jpeg|png|gif|webp|svg|ico|pdf|mp3|mp4|woff|woff2|ttf|eot)$">
+    Header unset Cache-Control
+    Header unset Pragma
+    Header unset Expires
     Header set Cache-Control "max-age=31536000, public, immutable"
 </FilesMatch>
 
 # Cache CSS and JavaScript for 1 year
 <FilesMatch "\.(css|js)$">
+    Header unset Cache-Control
+    Header unset Pragma
+    Header unset Expires
     Header set Cache-Control "max-age=31536000, public, immutable"
 </FilesMatch>
 
@@ -15,5 +21,20 @@
 
 # Enable compression
 <IfModule mod_deflate.c>
-    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json application/xml image/svg+xml
+    # Compress web fonts
+    AddOutputFilterByType DEFLATE font/woff font/woff2 application/font-woff application/font-woff2
+</IfModule>
+
+# Enable Expires headers
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType text/css "access plus 1 year"
+    ExpiresByType application/javascript "access plus 1 year"
+    ExpiresByType font/woff "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
 </IfModule>
