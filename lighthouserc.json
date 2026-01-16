@@ -2,7 +2,7 @@
   "ci": {
     "collect": {
       "numberOfRuns": 3,
-      "staticDistDir": "./dist"
+      "staticDistDir": "." 
     },
     "assert": {
       "assertions": {

@@ -5,15 +5,10 @@ jobs:
   lighthouse:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      
-      - name: Install & Build
-        run: |
-          npm install
-          npm run build
-          
+      - uses: actions/checkout@v4
+
       - name: Run Lighthouse
-        uses: treosh/lighthouse-config-action@v10
+        uses: treosh/lighthouse-ci-action@v12
         with:
           configPath: './lighthouserc.json'
-          uploadArtifacts: true # This saves the report so you can see what failed
+          uploadArtifacts: true
