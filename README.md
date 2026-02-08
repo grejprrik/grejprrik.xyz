@@ -8,14 +8,6 @@ Personal website for Štěpán Pavlica (grejprrik) featuring a dynamic Discord p
 
 ### Main Page (index.html)
 - **Live Discord Presence Widget** using Lanyard API
-  - Shows current status (online/idle/dnd/offline)
-  - Real-time activity tracking with elapsed time
-  - Expanded media player for Spotify and YouTube with:
-    - Album/video thumbnails
-    - Track/video title and artist/channel
-    - Live progress bar and timestamps
-  - Program activity display (VS Code, games, etc.) with icons
-  - Updates every 3 seconds for near real-time sync
   
 - **Bilingual Support** (Czech/English)
   - localStorage remembers language preference
@@ -24,7 +16,6 @@ Personal website for Štěpán Pavlica (grejprrik) featuring a dynamic Discord p
   
 - **Visual Design**
   - Animated wave background at bottom of page (red accent)
-  - Breathing blob effect behind header name
   - Decorative lines around header text
   - Smooth scroll-triggered animations (fade in + slide up)
   - Card shadows that appear above wave animation
@@ -34,13 +25,13 @@ Personal website for Štěpán Pavlica (grejprrik) featuring a dynamic Discord p
   
 - **Interactive Elements**
   - Hamburger navigation menu (links to home, gallery, GitHub repo)
-  - Mute button for game card sounds (remembers preference via localStorage)
+  - Mute button for game card sounds (since it's fucking annoying)
   - Hover-triggered school info card with photo and logo
   - Copy to clipboard for Discord handle with toast notification
   - Interactive game cards with sound effects:
     - Desktop: Plays on hover or click
     - Mobile: Only plays on tap (not when scrolling)
-    - Volume controls and mute functionality
+    - Mute functionality
   
 - **Personal Information Section**
   - School information with hover card
@@ -160,25 +151,24 @@ Personal website for Štěpán Pavlica (grejprrik) featuring a dynamic Discord p
 
 ## Adding New Gallery Images
 
-### Option 1: Using WebP (Recommended)
-If you already have WebP images or want to convert existing images:
+### Option 1: Using WebP
 
 #### Step 1: Add Full-Resolution Images
-Place your full-resolution WebP images in `images/` directory (e.g., `photo7.webp`, `photo8.webp`)
+Place  full-resolution WebP images in `images/` directory 
 
 #### Step 2: Create Optimized Versions Using Node.js
 The `images/thumbs/convert-to-webp.js` script can convert and resize images:
 
 ```bash
-# Install dependencies (if not already installed)
+# dependencies
 npm install sharp
 
-# For thumbnails (400x400px)
+# thumbnails 
 cd images/thumbs
 # Place source images in this directory
 node convert-to-webp.js
 
-# For medium-sized images (1920px max width)
+# medium-sized images
 cd ../medium
 # Place source images in this directory
 node convert-to-webp.js
@@ -201,16 +191,16 @@ await sharp('images/photo7.webp')
   .toFile('images/medium/photo7.webp');
 ```
 
-### Option 2: Using ImageMagick (Legacy Scripts)
+### Option 2: ImageMagick (Legacy Scripts)
 The included bash scripts work with JPG files:
 
 ```bash
 # For JPG source files
-./generate_thumbnails.sh      # Creates 400x400px squares
-./generate_medium_images.sh   # Creates 1920px max width for viewing
+./generate_thumbnails.sh      # 400x400px squares
+./generate_medium_images.sh   # 1920px max width for viewing
 ```
 
-**Note**: These scripts look for `photo*.jpg` files and create JPG outputs. You'll need to convert them to WebP separately.
+**Note**: These scripts look for `photo*.jpg` files and create JPG outputs. You'll need to convert them to WebP separately cause I'm fucking lazy
 
 ### Step 3: Update gallery.html
 Add new gallery items to the grid:
@@ -225,24 +215,19 @@ Add new gallery items to the grid:
 </div>
 ```
 
-The three-tier image system ensures optimal performance:
-- **Thumbnails** (~40-150KB): Fast initial grid display
-- **Medium** (~450KB-1.4MB): Lightbox viewing without full quality wait
-- **Full**: Available via "View Full Quality" button and download link
-
 ## Adding Sound Effects
 
 See [sounds/README.md](sounds/README.md) for detailed documentation. Quick summary:
 
 ### Requirements
-- **Format**: MP3 (128-192kbps for web optimization)
-- **Length**: 0.1-0.5 seconds (short, punchy effects)
+- **Format**: MP3
+- **Length**: 0.1-0.5s
 - **Target size**: Under 20KB each
 - **Sample rate**: 44.1kHz or 48kHz
 
 ### Current Sound Files
-- `postal.mp3` - POSTAL 2 game card hover/tap sound (volume: 50%)
-- `counterstrike.mp3` - Counter-Strike: Source card sound (volume: 35%)
+- `postal.mp3`
+- `counterstrike.mp3`
 
 ### Features
 - **Smart playback**: Desktop hover + click, mobile tap-only (no scroll triggers)
@@ -258,7 +243,6 @@ For adding more game cards with sounds, see the detailed guide in [sounds/README
 Located at `images/thumbs/convert-to-webp.js` - a Node.js script using Sharp for batch WebP conversion:
 
 ```bash
-# Install Sharp if needed
 npm install sharp
 
 # Convert all JPG/PNG files in current directory to WebP
@@ -271,12 +255,6 @@ node convert-to-webp.js
 - Displays size savings for each conversion
 - Preserves original files
 
-**Output example**:
-```
-✓ photo1.jpg -> photo1.webp
-  Size: 2847.3KB -> 856.2KB (69.9% saved)
-```
-
 ### Manual Optimization with Sharp
 ```javascript
 const sharp = require('sharp');
@@ -286,7 +264,7 @@ await sharp('input.jpg')
   .webp({ quality: 80 })
   .toFile('output.webp');
 
-// Create responsive images
+// Create images
 await sharp('banner.jpg')
   .resize(512, null)  // 512px height, auto width
   .webp({ quality: 85 })
@@ -325,9 +303,7 @@ php -S localhost:8000
 
 Then open http://localhost:8000
 
-**Important**: Don't open HTML files directly using `file://` protocol, browsers will block CORS requests, localStorage, and other features for security reasons.
-
-### Build Tools (Optional)
+### Build Tools
 The site uses Astro for potential build optimization:
 
 ```bash
@@ -345,18 +321,6 @@ npm run preview
 ```
 
 **Note**: The current site works as static HTML/CSS/JS without building.
-
-### Key Features to Test
-
-1. **Scroll Animations** - Scroll down to see sections fade in and slide up
-2. **Discord Widget** - Shows current Discord status if online/active
-3. **Language Switching** - Footer link toggles between Czech and English
-4. **Mute Button** - Top-right button, remembers state via localStorage
-5. **Game Card Sounds** - Hover on desktop, single tap on mobile
-6. **Wave Animation** - Animated red wave at bottom of page
-7. **Gallery Lightbox** - Click photos to open full-screen viewer with navigation
-8. **Animated Favicon** - Tab icon cycles between two cat images every 500ms
-9. **School Info Card** - Hover over "GOAH" text to see photo and logo overlay
 
 ### Discord Widget Configuration
 
@@ -462,12 +426,6 @@ Performance testing is configured in `lighthouserc.json`:
   - Red accent color (#ff4d4d) at 25% opacity
   - Positioned at bottom of page with overflow hidden
   
-- **Breathing Blob**: 
-  - 4-second ease-in-out scale animation
-  - Radial gradient with blur filter behind header
-  - Scales from 1.0 to 1.15 and back
-  - Disabled on mobile for performance
-  
 - **Scroll Reveal Animations**: 
   - 0.6s fade-in with translateY(20px → 0)
   - Triggered by Intersection Observer API (threshold: 0.1)
@@ -501,24 +459,6 @@ Performance testing is configured in `lighthouserc.json`:
 
 ## Deployment
 
-### GitHub Pages
-The site is configured for deployment via GitHub Pages:
-
-1. **Repository**: Push to the `main` branch
-2. **Auto-deployment**: GitHub Pages automatically serves from root directory
-3. **Custom domain**: Configured via `CNAME` file (contains: `grejprrik.xyz`)
-4. **No build step required**: Static HTML/CSS/JS files served directly
-
-### DNS Configuration
-Point your domain to GitHub Pages:
-```
-A     @     185.199.108.153
-A     @     185.199.109.153
-A     @     185.199.110.153
-A     @     185.199.111.153
-CNAME www   <username>.github.io
-```
-
 ### Manual Deployment (Alternative)
 Can be deployed to any static hosting service:
 - Netlify: Drag and drop the repository folder
@@ -550,32 +490,11 @@ Can be deployed to any static hosting service:
 - **Sharp (Node.js)**: WebP conversion and image optimization
 - **WebP format**: Primary image format for 60-70% size reduction
 
-### Development
-- **Git**: Version control
-- **GitHub Pages**: Free static hosting with custom domain
-- **Lighthouse CI**: Automated performance and SEO testing
-
-## Browser Support
-
-- ✅ Chrome/Edge (Chromium): Full support
-- ✅ Firefox: Full support
-- ✅ Safari: Full support (iOS 14+)
-- ✅ Mobile browsers: Touch-optimized interactions
-- ⚠️ Internet Explorer: Not supported (requires modern ES6+ features)
-
-**Key features requiring modern browsers**:
-- Intersection Observer API
-- CSS Grid & Flexbox
-- CSS Custom Properties (variables)
-- `async`/`await` JavaScript
-- WebP image format
-- localStorage API
-
 ## License
 
-Personal project by Štěpán Pavlica (grejprrik). 
+Personal project by Štěpán Pavlica
 
-© 2026 Štěpán Pavlica | contact@grejprrik.xyz
+Štěpán Pavlica | contact@grejprrik.xyz
 
 ---
 
