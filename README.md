@@ -1,309 +1,81 @@
 # grejprrik.xyz
 
-Personal website for Štěpán Pavlica (grejprrik) featuring a dynamic Discord presence widget, photo gallery, and bilingual (Czech/English) interface.
+Personal website with Discord presence widget, photo gallery, and bilingual Czech/English support.
 
-**Live at**: https://grejprrik.xyz
+**Live**: https://grejprrik.xyz
 
 ## Features
 
-### Main Page (index.html)
-- **Live Discord Presence Widget** using Lanyard API
-  
-- **Bilingual Support** (Czech/English)
-  - localStorage remembers language preference
-  - Switch between languages with one click
-  - All content dynamically updates
-  
-- **Visual Design**
-  - Animated wave background at bottom of page (red accent)
-  - Decorative lines around header text
-  - Smooth scroll-triggered animations (fade in + slide up)
-  - Card shadows that appear above wave animation
-  - Hover effects with red accent glow
-  - Mobile-optimized (animations disabled on mobile for performance)
-  - Animated favicon that cycles between two custom cat images every 500ms
-  
-- **Interactive Elements**
-  - Hamburger navigation menu (links to home, gallery, GitHub repo)
-  - Mute button for game card sounds (since it's fucking annoying)
-  - Hover-triggered school info card with photo and logo
-  - Copy to clipboard for Discord handle with toast notification
-  - Interactive game cards with sound effects:
-    - Desktop: Plays on hover or click
-    - Mobile: Only plays on tap (not when scrolling)
-    - Mute functionality
-  
-- **Personal Information Section**
-  - School information with hover card
-  - Music genre preferences
-  - Location
-  - Favorite games with optimized local banner images
-  - Favorite albums with hover overlays
-  - Social media links (GitHub, Instagram, Steam, Discord)
-  
-- **Technical Features**
-  - Built with vanilla HTML5, CSS3, and JavaScript
-  - Dark mode aesthetic using Inter font and FontAwesome icons
-  - CSS custom properties for theming
-  - Intersection Observer API for scroll animations
-  - Responsive design with mobile-specific optimizations
-  - Local asset optimization (compressed game banners)
-
-### Gallery Page (gallery.html)
-- **Three-tier Image System**
-  - Thumbnails (~40-150KB) for fast grid display
-  - Medium viewing images (~450KB-1.4MB) for lightbox
-  - Full originals available via "View Full Quality" button
-  
-- **Lightbox Viewer**
-  - Loading spinner during image load
-  - Navigation with left/right arrows
-  - Keyboard controls (Arrow keys, Escape to close)
-  - Shows current resolution and file size
-  - One-click download icon for full-resolution images
-  - Smart image preloading
-  
-- **Visual Design**
-  - Same animated wave background as main page
-  - Breathing blob effect behind header
-  - Decorative header lines
-  - Card shadows for depth
-  - 2-column layout on mobile, auto-fill grid on desktop
-  - Smooth hover animations
-  
-- **Navigation**
-  - Hamburger menu matching main page
-  - Bilingual interface
-  - Links to home and GitHub repo
+- Live Discord status via Lanyard API (Spotify, YouTube, VS Code, games)
+- Bilingual interface with localStorage persistence
+- Animated wave background, scroll animations, rotating cat favicon
+- Game cards with hover/tap sounds and smart mobile detection (10px threshold)
+- Photo gallery: 3-tier images (thumbnails → medium → full, all WebP)
+- Inline SVG icons (no FontAwesome, ~70KB saved)
+- Vanilla HTML/CSS/JS, no frameworks
 
 ## Tech Stack
 
-- **HTML5 / CSS3**
-  - Custom CSS variables for theming
-  - CSS Grid and Flexbox for layouts
-  - CSS animations and transitions
-  - Keyframe animations (wave flow, breathing effect)
-  - Intersection Observer API for scroll animations
-  
-- **JavaScript**
-  - Language switching with localStorage persistence
-  - Clipboard API for copy-to-clipboard functionality
-  - Image preloading and lazy loading
-  - Discord Lanyard API integration
-  - Real-time progress tracking for media
-  - Audio playback with intelligent touch event handling
-  - Scroll-triggered animations with Intersection Observer
-  - localStorage for user preferences (language, mute state)
-  
-- **External Resources**
-  - Inter font from Google Fonts
-  - FontAwesome 6.0 icons
-  - Lanyard API for Discord Rich Presence (https://api.lanyard.rest/)
-  
-- **Build Tools**
-  - ImageMagick for generating optimized images
-  - Bash scripts for image processing automation
+- HTML5, CSS3, vanilla JavaScript
+- Inter font (async loaded via media="print" trick)
+- Lanyard API, Sharp for image optimization
+- ImageMagick scripts for batch processing
 
-## Project Structure
-
-```text
-├── index.html                    # Main landing page with Discord widget
-├── gallery.html                  # Photo gallery with lightbox viewer
-├── CNAME                         # Custom domain: grejprrik.xyz
-├── sitemap.xml                   # SEO sitemap for search engines
-├── robots.txt                    # Search engine crawler instructions
-├── package.json                  # NPM package configuration (Astro, Sharp)
-├── lighthouserc.json            # Lighthouse CI performance testing config
-├── favicon1.webp                # Animated favicon frame 1 (cat image)
-├── favicon2.webp                # Animated favicon frame 2 (cat image)
-├── images/                       # Image assets directory
-│   ├── photo1-6.webp            # Full-resolution gallery images
-│   ├── DSC_0101_01.webp         # Additional photo
-│   ├── goah.webp                # School building photo
-│   ├── goah.png                 # School logo (original)
-│   ├── goah_budova.webp         # School building (alternative)
-│   ├── banners/                 # Game banner images (WebP, optimized)
-│   │   ├── postal2.webp         # POSTAL 2 banner (desktop)
-│   │   ├── postal2-tablet.webp  # POSTAL 2 banner (tablet)
-│   │   ├── postal2-mobile.webp  # POSTAL 2 banner (mobile)
-│   │   └── css.webp             # Counter-Strike: Source banner
-│   ├── icons/                   # Icon files
-│   │   ├── postal.webp          # POSTAL 2 icon
-│   │   ├── counterstrike.webp   # Counter-Strike icon
-│   │   └── counterstrike-backup.webp
-│   ├── thumbs/                  # Gallery thumbnails (400x400px, ~40-150KB)
-│   │   ├── photo1-6.webp        # Gallery photo thumbnails
-│   │   ├── amnesiac.webp        # Album cover - Radiohead
-│   │   ├── freedom.webp         # Album cover - Sublime
-│   │   ├── hybrid.webp          # Album cover - Linkin Park
-│   │   ├── return.webp          # Album cover - Jamiroquai
-│   │   └── convert-to-webp.js   # Node.js script to convert images to WebP
-│   └── medium/                  # Gallery medium-res (1920px max, ~450KB-1.4MB)
-│       └── photo1-6.webp        # Medium-resolution gallery images
-├── sounds/                       # Audio files for game card interactions
-│   ├── README.md                # Sound system documentation
-│   ├── postal.mp3               # POSTAL 2 game card sound
-│   └── counterstrike.mp3        # Counter-Strike game card sound
-├── generate_thumbnails.sh       # Bash script to create 400x400px thumbnails
-├── generate_medium_images.sh    # Bash script to create 1920px viewing images
-└── README.md                    # This file
-```
-
-## Adding New Gallery Images
-
-### Option 1: Using WebP
-
-#### Step 1: Add Full-Resolution Images
-Place  full-resolution WebP images in `images/` directory 
-
-#### Step 2: Create Optimized Versions Using Node.js
-The `images/thumbs/convert-to-webp.js` script can convert and resize images:
+## Quick Start
 
 ```bash
-# dependencies
-npm install sharp
+# Local server
+python3 -m http.server 8000
 
-# thumbnails 
-cd images/thumbs
-# Place source images in this directory
-node convert-to-webp.js
+# Generate images from JPG
+./generate_thumbnails.sh      # 400x400px thumbnails
+./generate_medium_images.sh   # 1920px max width
 
-# medium-sized images
-cd ../medium
-# Place source images in this directory
-node convert-to-webp.js
+# Convert to WebP
+cd images/thumbs && npm install sharp && node convert-to-webp.js
 ```
 
-Or manually use Sharp in Node.js:
-```javascript
-const sharp = require('sharp');
+## Adding Gallery Images
 
-// Thumbnail (400x400px square)
-await sharp('images/photo7.webp')
-  .resize(400, 400, { fit: 'cover' })
-  .webp({ quality: 80 })
-  .toFile('images/thumbs/photo7.webp');
-
-// Medium (1920px max width)
-await sharp('images/photo7.webp')
-  .resize(1920, 1920, { fit: 'inside', withoutEnlargement: true })
-  .webp({ quality: 85 })
-  .toFile('images/medium/photo7.webp');
-```
-
-### Option 2: ImageMagick (Legacy Scripts)
-The included bash scripts work with JPG files:
-
-```bash
-# For JPG source files
-./generate_thumbnails.sh      # 400x400px squares
-./generate_medium_images.sh   # 1920px max width for viewing
-```
-
-**Note**: These scripts look for `photo*.jpg` files and create JPG outputs. You'll need to convert them to WebP separately cause I'm fucking lazy
-
-### Step 3: Update gallery.html
-Add new gallery items to the grid:
-
+1. Place full-res WebP in `images/`
+2. Generate thumbnails: `cd images/thumbs && node convert-to-webp.js`
+3. Generate medium: `cd images/medium && node convert-to-webp.js`
+4. Add to gallery.html:
 ```html
 <div class="gallery-item">
     <img src="images/thumbs/photo7.webp" alt="Photo 7" class="thumbnail" 
          data-medium="images/medium/photo7.webp" 
-         data-full="images/photo7.webp"
-         loading="lazy" 
-         decoding="async">
+         data-full="images/photo7.webp" loading="lazy" decoding="async">
 </div>
 ```
 
-## Adding Sound Effects
+## Adding Sounds
 
-See [sounds/README.md](sounds/README.md) for detailed documentation. Quick summary:
+See [sounds/README.md](sounds/README.md). Requirements: MP3, 0.1-0.5s, < 20KB.
 
-### Requirements
-- **Format**: MP3
-- **Length**: 0.1-0.5s
-- **Target size**: Under 20KB each
-- **Sample rate**: 44.1kHz or 48kHz
+## Discord Widget Setup
 
-### Current Sound Files
-- `postal.mp3`
-- `counterstrike.mp3`
+1. Get Discord User ID (Settings → Advanced → Developer Mode → Copy User ID)
+2. Update `DISCORD_USER_ID` in index.html
+3. Join https://discord.gg/lanyard
 
-### Features
-- **Smart playback**: Desktop hover + click, mobile tap-only (no scroll triggers)
-- **Mute toggle**: Persisted via localStorage across sessions
-- **Touch detection**: 10px movement threshold to distinguish taps from scrolls
-- **Duplicate prevention**: Touch events override mouse events on hybrid devices
+## Performance
 
-For adding more game cards with sounds, see the detailed guide in [sounds/README.md](sounds/README.md).
+- 95/100 Performance, 100/100 Accessibility/Best Practices/SEO
+- FCP: 0.9s, LCP: 2.9s, CLS: 0.000
+- WebP images (60-70% smaller), responsive banners, inline SVG icons
+- Apache `.htaccess`: 1 year cache for static assets, gzip compression
 
-## Image Optimization
+## Deployment
 
-### WebP Conversion Script
-Located at `images/thumbs/convert-to-webp.js` - a Node.js script using Sharp for batch WebP conversion:
+Works on any static host (Netlify, Vercel, GitHub Pages, FTP). `.htaccess` for Apache servers included.
 
-```bash
-npm install sharp
+---
 
-# Convert all JPG/PNG files in current directory to WebP
-node convert-to-webp.js
-```
+**Repo**: https://github.com/grejprrik/grejprrik.xyz  
+**Contact**: contact@grejprrik.xyz
 
-**Features**:
-- Converts JPG and PNG files to WebP format
-- 80% quality setting (good balance of size vs. quality)
-- Displays size savings for each conversion
-- Preserves original files
-
-### Manual Optimization with Sharp
-```javascript
-const sharp = require('sharp');
-
-// Convert to WebP
-await sharp('input.jpg')
-  .webp({ quality: 80 })
-  .toFile('output.webp');
-
-// Create images
-await sharp('banner.jpg')
-  .resize(512, null)  // 512px height, auto width
-  .webp({ quality: 85 })
-  .toFile('banner-optimized.webp');
-```
-
-### Current Image Formats
-- All visible website images are in **WebP format** for optimal performance
-- Album covers: Located in `images/thumbs/` (amnesiac.webp, freedom.webp, hybrid.webp, return.webp)
-- Game banners: Responsive images in `images/banners/` (separate mobile/tablet/desktop versions)
-- Gallery photos: Three-tier system (thumbnails, medium, full) all in WebP
-
-### Banner Optimization Strategy
-Game banners use responsive images with different versions for different screen sizes:
-- **Desktop**: `postal2.webp` (full quality)
-- **Tablet**: `postal2-tablet.webp` (medium quality)
-- **Mobile**: `postal2-mobile.webp` (optimized for small screens)
-
-This is implemented via HTML `<link rel="preload">` with media queries for optimal performance.
-
-## Development
-
-### Local Development Server
-Run a local web server for proper testing (required for some features to work):
-
-```bash
-# Python 3
-python3 -m http.server 8000
-
-# Node.js (if you have http-server installed)
-npx http-server -p 8000
-
-# PHP (if installed)
-php -S localhost:8000
-```
-
-Then open http://localhost:8000
-
-### Build Tools
+### Build Tools (Optional)
 The site uses Astro for potential build optimization:
 
 ```bash
@@ -320,7 +92,7 @@ npm run build
 npm run preview
 ```
 
-**Note**: The current site works as static HTML/CSS/JS without building.
+**Note**: The site works as static HTML/CSS/JS without building. Astro is optional for minification and optimization.
 
 ### Discord Widget Configuration
 
@@ -353,56 +125,53 @@ The Discord presence widget uses the Lanyard API to display real-time Discord st
 
 ## Performance & SEO
 
-### Lighthouse CI Configuration
-Performance testing is configured in `lighthouserc.json`:
-
-```json
-{
-  "ci": {
-    "collect": {
-      "numberOfRuns": 3,
-      "staticDistDir": "."
-    },
-    "assert": {
-      "assertions": {
-        "categories:performance": ["error", {"minScore": 0.95}],
-        "categories:accessibility": ["error", {"minScore": 1.0}],
-        "categories:best-practices": ["error", {"minScore": 1.0}],
-        "categories:seo": ["error", {"minScore": 1.0}]
-      }
-    }
-  }
-}
-```
-
 **Target scores** (mobile):
-- Performance: 95/100 (0.9s First Contentful Paint achieved)
+- Performance: 95/100
 - Accessibility: 100/100
 - Best Practices: 100/100
 - SEO: 100/100
 
 ### Performance Optimizations
 - **WebP images**: All images converted to WebP format for 60-70% size reduction
-- **Responsive images**: Separate mobile/tablet/desktop versions of game banners
-- **Image preloading**: Critical images preloaded with media queries
+- **Responsive images**: Separate mobile/tablet/desktop versions of game banners with preload
+- **Image optimization**: Counter-Strike icon reduced from 256x256 (8.4KB) to 105x105 (3.0KB)
 - **Font loading optimization**: Uses `media="print"` trick to load fonts asynchronously
   - Prevents render blocking without causing FOUT (Flash of Unstyled Text)
   - Maintains 0.9s FCP (First Contentful Paint)
+  - Tested approach: `rel="preload"` caused 2s FCP regression (0.9s → 2.9s)
 - **Lazy loading**: Gallery images use `loading="lazy"` and `decoding="async"`
-- **Three-tier image system**: Thumbnails → Medium → Full quality
+- **Three-tier image system**: Thumbnails (40-150KB) → Medium (450KB-1.4MB) → Full quality
 - **DNS prefetching**: Preconnects to Google Fonts, Discord API, CDNs
+- **CLS Prevention**: Min-heights set on dynamic content
+  - Discord widget: `min-height: 100px`
+  - Activity icons: `min-height: 16px`
+  - Game cards: `min-height: 200px`
+  - Album cards: `min-height: 150px`
+  - Achieved CLS: 0.000
+- **Gallery grid fix**: `main{width:100%;max-width:1200px}` prevents flexbox shrink-to-fit collapse
+- **Inline SVG icons**: Removed FontAwesome CDN (~70KB), replaced with inline SVG
 - **Mobile-specific optimizations**:
   - Animations disabled below intersection threshold
   - Breathing blob effect disabled on small screens
   - Grid layout switches to 2 columns on mobile
+  - Smart touch detection (10px threshold) prevents scroll-triggered sounds
+
+### Core Web Vitals
+- **First Contentful Paint (FCP)**: 0.9s
+- **Largest Contentful Paint (LCP)**: 2.9s
+- **Total Blocking Time (TBT)**: 0ms
+- **Cumulative Layout Shift (CLS)**: 0.000
+- **Speed Index**: 1.2s
 
 ### SEO Configuration
 - **Sitemap**: `sitemap.xml` lists all pages with priorities and update frequency
 - **Robots.txt**: Configured to allow all crawlers with sitemap reference
-- **Meta tags**: Comprehensive meta descriptions, keywords, and Open Graph data
-- **Canonical URLs**: Specified for each page
-- **Semantic HTML**: Proper use of header, main, footer, nav elements
+- **Meta tags**: Comprehensive descriptions, keywords (including aliases), author/publisher
+- **Keywords**: grejprrik, grejprr, graper, grejprrwashere, puddle_of_cum, primer.fiftyfive, Štěpán Pavlica
+- **Canonical URLs**: Specified for each page to prevent duplicate content
+- **Semantic HTML**: Proper use of header, main, footer, nav elements with ARIA labels
 - **Alt text**: All images have descriptive alt attributes
+- **Open Graph**: Meta tags for social media sharing
 
 ## Design & Styling
 
@@ -417,7 +186,13 @@ Performance testing is configured in `lighthouserc.json`:
 - **Font Family**: Inter (Google Fonts)
 - **Weights**: 300 (light), 400 (regular), 700 (bold)
 - **Font Loading**: Async loading via `media="print"` trick prevents render blocking
-- **Icons**: FontAwesome 6.0 (via CDN with preconnect)
+  - Achieves 0.9s FCP without FOUT issues
+  - Fallback via noscript tag for JS-disabled browsers
+- **Icons**: Inline SVG (no external dependencies)
+  - Volume up/mute icons for sound toggle
+  - GitHub icon for navigation
+  - Download icon for gallery
+  - Social media icons
 
 ### Animations & Effects
 - **Wave Background**: 
@@ -459,36 +234,66 @@ Performance testing is configured in `lighthouserc.json`:
 
 ## Deployment
 
-### Manual Deployment (Alternative)
-Can be deployed to any static hosting service:
-- Netlify: Drag and drop the repository folder
-- Vercel: Connect GitHub repository
-- Cloudflare Pages: Connect repository or upload files
-- Traditional hosting: Upload via FTP/SFTP
+The site is deployed as a static website and requires no server-side processing.
 
-**Requirements**: Any web server capable of serving static files (no server-side processing needed)
+### Apache Configuration (.htaccess)
+The `.htaccess` file includes production-ready optimizations:
+
+```apache
+# Cache static assets for 1 year
+<FilesMatch "\.(jpg|jpeg|png|gif|webp|svg|ico|pdf|mp3|mp4|woff|woff2|ttf|eot)$">
+    Header set Cache-Control "max-age=31536000, public, immutable"
+</FilesMatch>
+
+# Cache CSS and JavaScript for 1 year  
+<FilesMatch "\.(css|js)$">
+    Header set Cache-Control "max-age=31536000, public, immutable"
+</FilesMatch>
+
+# Cache HTML for 1 hour
+<FilesMatch "\.(html|htm)$">
+    Header set Cache-Control "max-age=3600, public"
+</FilesMatch>
+
+# Enable gzip compression
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript
+    AddOutputFilterByType DEFLATE application/json application/xml image/svg+xml
+    AddOutputFilterByType DEFLATE font/woff font/woff2
+</IfModule>
+
+# Enable Expires headers
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType text/css "access plus 1 year"
+    ExpiresByType application/javascript "access plus 1 year"
+</IfModule>
+```
+
+
 
 ## Technologies Used
 
 ### Core
-- **HTML5**: Semantic markup, meta tags for SEO
-- **CSS3**: Custom properties, Grid, Flexbox, animations, media queries
-- **JavaScript (Vanilla)**: No frameworks, modern ES6+ syntax
+- **HTML5**: Semantic markup, meta tags for SEO, Open Graph tags
+- **CSS3**: Custom properties, Grid, Flexbox, animations, media queries, min-heights for CLS prevention
+- **JavaScript (Vanilla)**: No frameworks, modern ES6+ syntax, async/await for API calls
 
 ### APIs & Services
 - **Lanyard API**: Real-time Discord presence (https://api.lanyard.rest/)
-- **Google Fonts**: Inter font family
-- **FontAwesome**: Icons (version 6.0)
+- **Google Fonts**: Inter font family (async loaded)
+- **No icon libraries**: All inline SVG (FontAwesome removed)
 
 ### Build Tools (Optional)
 - **Astro**: Modern static site generator (configured but not required)
-- **Sharp**: High-performance image processing for Node.js
+- **Sharp**: High-performance image processing for Node.js (WebP conversion)
 - **html-minifier-terser**: HTML minification for production builds
 
 ### Image Processing
-- **ImageMagick**: Bash scripts for batch thumbnail/medium image generation
-- **Sharp (Node.js)**: WebP conversion and image optimization
-- **WebP format**: Primary image format for 60-70% size reduction
+- **ImageMagick**: Bash scripts for batch thumbnail/medium image generation from JPG
+- **Sharp (Node.js)**: WebP conversion and image optimization (quality 80-85%)
+- **WebP format**: Primary image format for 60-70% size reduction vs JPEG/PNG
 
 ## License
 
