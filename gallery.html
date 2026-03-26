@@ -12,7 +12,6 @@
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://grejprrik.xyz/gallery.html">
     <title>Photos | grejprrik</title>
-    <link href="favicon1.webp" rel="icon" id="favicon" type="image/webp">
     <link href="https://fonts.googleapis.com" rel="preconnect">
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
     <link href="https://cdnjs.cloudflare.com" rel="preconnect">
@@ -848,14 +847,6 @@
                 else if (e.key === "ArrowRight" && currentIndex < thumbnails.length - 1) showImage(currentIndex + 1);
             }
         });
-
-        const favicons = ["favicon1.webp", "favicon2.webp"];
-        let currentFavicon = 0;
-        const faviconLink = document.getElementById("favicon");
-        setInterval(() => {
-            currentFavicon = (currentFavicon + 1) % favicons.length;
-            faviconLink.href = favicons[currentFavicon] + "?t=" + Date.now();
-        }, 500);
     </script>
 </body>
 
