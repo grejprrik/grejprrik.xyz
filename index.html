@@ -80,6 +80,8 @@
             padding: 2px;
             width: 100%;
             max-width: 800px;
+            min-width: 220px;
+            min-height: 100px;
             margin-bottom: 20px;
             position: absolute;
             top: 20px;
@@ -88,6 +90,74 @@
 
         .window.dragging {
             user-select: none;
+        }
+
+        .window.maximized {
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            height: 100%;
+        }
+
+        .window.maximized .window-body {
+            height: calc(100% - 22px);
+        }
+
+        .window.minimized {
+            display: none;
+        }
+
+        .resize-handle {
+            position: absolute;
+            z-index: 5;
+        }
+
+        .resize-handle.n { top: -3px; left: 6px; right: 6px; height: 6px; cursor: ns-resize; }
+        .resize-handle.s { bottom: -3px; left: 6px; right: 6px; height: 6px; cursor: ns-resize; }
+        .resize-handle.e { top: 6px; right: -3px; bottom: 6px; width: 6px; cursor: ew-resize; }
+        .resize-handle.w { top: 6px; left: -3px; bottom: 6px; width: 6px; cursor: ew-resize; }
+        .resize-handle.ne { top: -3px; right: -3px; width: 10px; height: 10px; cursor: nesw-resize; }
+        .resize-handle.nw { top: -3px; left: -3px; width: 10px; height: 10px; cursor: nwse-resize; }
+        .resize-handle.se { bottom: -3px; right: -3px; width: 10px; height: 10px; cursor: nwse-resize; }
+        .resize-handle.sw { bottom: -3px; left: -3px; width: 10px; height: 10px; cursor: nesw-resize; }
+
+        .window.maximized .resize-handle {
+            display: none;
+        }
+
+        .taskbar-context-menu {
+            position: fixed;
+            background: var(--win-bg);
+            border: 2px solid;
+            border-color: var(--win-border-light) var(--win-border-dark) var(--win-border-dark) var(--win-border-light);
+            box-shadow: 1px 1px 0 0 var(--win-border-dark-2);
+            padding: 2px;
+            z-index: 3000;
+            display: none;
+            min-width: 160px;
+        }
+
+        .taskbar-context-menu.show {
+            display: block;
+        }
+
+        .taskbar-context-menu button {
+            display: block;
+            width: 100%;
+            text-align: left;
+            background: none;
+            border: none;
+            font-family: inherit;
+            font-size: 13px;
+            padding: 4px 10px;
+            cursor: pointer;
+            color: var(--text);
+        }
+
+        .taskbar-context-menu button:hover {
+            background: var(--title-bar-bg);
+            color: var(--title-bar-text);
         }
 
         .title-bar {
@@ -199,6 +269,15 @@
             margin: 0 4px;
         }
 
+        .taskbar-windows {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            flex: 1;
+            min-width: 0;
+            overflow: hidden;
+        }
+
         .taskbar-item {
             height: 24px;
             /* very small left padding to hug the icon */
@@ -212,12 +291,22 @@
             gap: 4px;
             font-size: 13px;
             min-width: 0;
+            max-width: 200px;
             width: auto;
             box-shadow: 1px 1px 0 0 var(--win-border-dark-2);
             font-weight: bold;
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
+            font-family: inherit;
+            cursor: pointer;
+            color: var(--text);
+        }
+
+        .taskbar-item.active {
+            border-color: var(--win-border-dark) var(--win-border-light) var(--win-border-light) var(--win-border-dark);
+            box-shadow: none;
+            background: var(--win-border-light-2);
         }
 
         .taskbar-item img {
@@ -433,16 +522,16 @@
 <body>
     <div class="desktop">
         <!-- Header Window -->
-        <div class="window">
+        <div class="window" id="window-header" data-title="grejprrik.exe" data-icon="images/icons/mycomputer.webp" data-icon-fallback="https://win98icons.alexmeub.com/icons/png/computer_explorer-5.png">
             <div class="title-bar">
                 <div class="title-bar-text">
                     <img src="images/icons/mycomputer.webp" width="16" height="16" alt="" onerror="this.src='https://win98icons.alexmeub.com/icons/png/computer_explorer-5.png'">
                     grejprrik.exe
                 </div>
                 <div class="title-bar-controls">
-                    <button aria-label="Minimize">_</button>
-                    <button aria-label="Maximize">□</button>
-                    <button aria-label="Close" onclick="window.close()">×</button>
+                    <button aria-label="Minimize" data-action="minimize">_</button>
+                    <button aria-label="Maximize" data-action="maximize">□</button>
+                    <button aria-label="Close" data-action="close">×</button>
                 </div>
             </div>
             <div class="window-body">
@@ -458,14 +547,14 @@
         </div>
 
         <!-- Discord Window -->
-        <div class="window" id="discord-widget-win" style="display:none">
+        <div class="window" id="discord-widget-win" data-title="Discord Messenger" data-icon="" style="display:none">
             <div class="title-bar">
                 <div class="title-bar-text">
                     <img src="https://cdn.simpleicons.org/discord/white" width="14" height="14" alt="">
                     Discord Messenger
                 </div>
                 <div class="title-bar-controls">
-                    <button>×</button>
+                    <button data-action="close">×</button>
                 </div>
             </div>
             <div class="window-body discord-widget" id="discord-widget">
@@ -505,10 +594,10 @@
         </div>
 
         <!-- Games Window -->
-        <div class="window">
+        <div class="window" id="window-games" data-title="Favorite Games" data-icon="">
             <div class="title-bar">
                 <div class="title-bar-text">Favorite Games</div>
-                <div class="title-bar-controls"><button>×</button></div>
+                <div class="title-bar-controls"><button data-action="close">×</button></div>
             </div>
             <div class="window-body">
                 <div class="game-grid">
@@ -525,10 +614,10 @@
         </div>
 
         <!-- Music Window -->
-        <div class="window">
+        <div class="window" id="window-music" data-title="Last.fm Player" data-icon="">
             <div class="title-bar">
                 <div class="title-bar-text">Last.fm Player</div>
-                <div class="title-bar-controls"><button>×</button></div>
+                <div class="title-bar-controls"><button data-action="close">×</button></div>
             </div>
             <div class="window-body">
                 <div id="lang-albums-title" style="margin-bottom: 5px; font-weight: bold;">Albums of the Week</div>
@@ -540,15 +629,12 @@
     </div>
 
     <!-- Taskbar -->
-    <div class="taskbar">
+    <div class="taskbar" id="taskbar">
         <button class="start-button" id="startButton" aria-label="Start">
             <img class="full-start" src="images/icons/windows95/Start_button_Windows_4.00.337.png" alt="Start">
         </button>
         <div class="taskbar-divider"></div>
-        <div class="taskbar-item">
-            <img src="images/icons/mycomputer.webp" width="14" height="14" alt="" onerror="this.src='https://win98icons.alexmeub.com/icons/png/computer_explorer-5.png'">
-            grejprrik.exe
-        </div>
+        <div class="taskbar-windows" id="taskbarWindows"></div>
         <div class="system-tray">
             <div class="mute-toggle" id="muteToggle">
                 <img id="muteIcon" src="images/icons/windows95/speaker%20-%20volume.png" width="16" height="16" alt="Mute toggle">
@@ -743,13 +829,92 @@
         }
 
         let zCounter = 10;
+        let activeWindowId = null;
+
         function bringToFront(winEl) {
             zCounter++;
             winEl.style.zIndex = zCounter;
+            activeWindowId = winEl.id;
+            setActiveTaskbarButton(winEl);
         }
 
         function isDragEnabled() {
             return window.matchMedia("(min-width: 601px)").matches;
+        }
+
+        function getWindowTitle(winEl) {
+            return winEl.dataset.title || winEl.querySelector('.title-bar-text')?.textContent.trim() || 'Window';
+        }
+
+        function setActiveTaskbarButton(winEl) {
+            document.querySelectorAll('.taskbar-item').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.forWindow === winEl.id);
+            });
+        }
+
+        function ensureTaskbarButton(winEl) {
+            if (!winEl.id) return;
+            const list = document.getElementById('taskbarWindows');
+            if (!list) return;
+            let btn = list.querySelector(`[data-for-window="${winEl.id}"]`);
+            if (btn) return btn;
+
+            btn = document.createElement('button');
+            btn.className = 'taskbar-item';
+            btn.dataset.forWindow = winEl.id;
+            btn.type = 'button';
+            btn.textContent = getWindowTitle(winEl);
+            btn.addEventListener('click', () => {
+                if (winEl.classList.contains('minimized')) {
+                    restoreWindow(winEl);
+                } else if (activeWindowId === winEl.id) {
+                    minimizeWindow(winEl);
+                } else {
+                    bringToFront(winEl);
+                }
+            });
+            list.appendChild(btn);
+            return btn;
+        }
+
+        function removeTaskbarButton(winEl) {
+            const btn = document.querySelector(`[data-for-window="${winEl.id}"]`);
+            if (btn) btn.remove();
+        }
+
+        function minimizeWindow(winEl) {
+            winEl.classList.add('minimized');
+            if (activeWindowId === winEl.id) activeWindowId = null;
+            const btn = document.querySelector(`[data-for-window="${winEl.id}"]`);
+            if (btn) btn.classList.remove('active');
+        }
+
+        function restoreWindow(winEl) {
+            winEl.classList.remove('minimized');
+            bringToFront(winEl);
+        }
+
+        function toggleMaximize(winEl) {
+            if (winEl.classList.contains('maximized')) {
+                winEl.classList.remove('maximized');
+                if (winEl.dataset.preLeft !== undefined) {
+                    winEl.style.left = winEl.dataset.preLeft;
+                    winEl.style.top = winEl.dataset.preTop;
+                    winEl.style.width = winEl.dataset.preWidth;
+                }
+            } else {
+                winEl.dataset.preLeft = winEl.style.left;
+                winEl.dataset.preTop = winEl.style.top;
+                winEl.dataset.preWidth = winEl.style.width || '';
+                winEl.classList.add('maximized');
+            }
+            bringToFront(winEl);
+        }
+
+        function closeWindow(winEl) {
+            winEl.classList.add('minimized');
+            if (activeWindowId === winEl.id) activeWindowId = null;
+            removeTaskbarButton(winEl);
         }
 
         function makeDraggable(winEl) {
@@ -760,7 +925,7 @@
             let offsetX = 0, offsetY = 0, dragging = false;
 
             const startDrag = (clientX, clientY) => {
-                if (!isDragEnabled()) return false;
+                if (!isDragEnabled() || winEl.classList.contains('maximized')) return false;
                 bringToFront(winEl);
                 const rect = winEl.getBoundingClientRect();
                 const parentRect = winEl.parentElement.getBoundingClientRect();
@@ -808,7 +973,81 @@
             }, { passive: true });
             document.addEventListener('touchend', endDrag);
 
+            titleBar.addEventListener('dblclick', (e) => {
+                if (e.target.closest('.title-bar-controls')) return;
+                if (isDragEnabled()) toggleMaximize(winEl);
+            });
+
             winEl.addEventListener('mousedown', () => { if (isDragEnabled()) bringToFront(winEl); });
+        }
+
+        function makeResizable(winEl) {
+            if (winEl.dataset.resizeBound === "true") return;
+            winEl.dataset.resizeBound = "true";
+
+            const edges = ['n', 's', 'e', 'w', 'ne', 'nw', 'se', 'sw'];
+            edges.forEach(edge => {
+                const handle = document.createElement('div');
+                handle.className = 'resize-handle ' + edge;
+                winEl.appendChild(handle);
+
+                let startX, startY, startW, startH, startTop, startLeft, resizing = false;
+
+                handle.addEventListener('mousedown', (e) => {
+                    if (!isDragEnabled() || winEl.classList.contains('maximized')) return;
+                    e.preventDefault();
+                    e.stopPropagation();
+                    bringToFront(winEl);
+                    resizing = true;
+                    const rect = winEl.getBoundingClientRect();
+                    startX = e.clientX;
+                    startY = e.clientY;
+                    startW = rect.width;
+                    startH = rect.height;
+                    startTop = winEl.offsetTop;
+                    startLeft = winEl.offsetLeft;
+
+                    const onMove = (ev) => {
+                        if (!resizing) return;
+                        const dx = ev.clientX - startX;
+                        const dy = ev.clientY - startY;
+
+                        if (edge.includes('e')) winEl.style.width = Math.max(220, startW + dx) + 'px';
+                        if (edge.includes('s')) winEl.style.height = Math.max(100, startH + dy) + 'px';
+                        if (edge.includes('w')) {
+                            const newW = Math.max(220, startW - dx);
+                            winEl.style.width = newW + 'px';
+                            winEl.style.left = (startLeft + (startW - newW)) + 'px';
+                        }
+                        if (edge.includes('n')) {
+                            const newH = Math.max(100, startH - dy);
+                            winEl.style.height = newH + 'px';
+                            winEl.style.top = (startTop + (startH - newH)) + 'px';
+                        }
+                    };
+                    const onUp = () => {
+                        resizing = false;
+                        document.removeEventListener('mousemove', onMove);
+                        document.removeEventListener('mouseup', onUp);
+                    };
+                    document.addEventListener('mousemove', onMove);
+                    document.addEventListener('mouseup', onUp);
+                });
+            });
+        }
+
+        function bindWindowControls(winEl) {
+            winEl.querySelectorAll('.title-bar-controls [data-action]').forEach(btn => {
+                if (btn.dataset.actionBound === "true") return;
+                btn.dataset.actionBound = "true";
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const action = btn.dataset.action;
+                    if (action === 'minimize') minimizeWindow(winEl);
+                    else if (action === 'maximize') toggleMaximize(winEl);
+                    else if (action === 'close') closeWindow(winEl);
+                });
+            });
         }
 
         function initDraggableWindows() {
@@ -825,7 +1064,50 @@
                     winEl.dataset.posInit = "true";
                 }
                 makeDraggable(winEl);
+                makeResizable(winEl);
+                bindWindowControls(winEl);
+
+                if (winEl.style.display !== 'none') {
+                    ensureTaskbarButton(winEl);
+                }
             });
+        }
+
+        function cascadeWindows() {
+            const windows = Array.from(document.querySelectorAll('.window'))
+                .filter(w => w.style.display !== 'none' && !w.classList.contains('minimized'));
+            windows.forEach((winEl, i) => {
+                winEl.classList.remove('maximized');
+                winEl.style.left = (40 + i * 40) + 'px';
+                winEl.style.top = (20 + i * 40) + 'px';
+                bringToFront(winEl);
+            });
+        }
+
+        function initTaskbarContextMenu() {
+            const taskbar = document.getElementById('taskbar');
+            if (!taskbar) return;
+
+            const menu = document.createElement('div');
+            menu.className = 'taskbar-context-menu';
+            const cascadeBtn = document.createElement('button');
+            cascadeBtn.textContent = 'Cascade Windows';
+            cascadeBtn.type = 'button';
+            cascadeBtn.addEventListener('click', () => {
+                cascadeWindows();
+                menu.classList.remove('show');
+            });
+            menu.appendChild(cascadeBtn);
+            document.body.appendChild(menu);
+
+            taskbar.addEventListener('contextmenu', (e) => {
+                if (e.target.closest('.taskbar-item') || e.target.closest('.start-button') || e.target.closest('.system-tray')) return;
+                e.preventDefault();
+                menu.style.left = e.clientX + 'px';
+                menu.style.top = Math.max(0, e.clientY - menu.offsetHeight) + 'px';
+                menu.classList.add('show');
+            });
+            document.addEventListener('click', () => menu.classList.remove('show'));
         }
 
         window.addEventListener("DOMContentLoaded", () => {
@@ -834,6 +1116,7 @@
             initClock();
             updateAlbums();
             initDraggableWindows();
+            initTaskbarContextMenu();
             updateDiscord();
             setInterval(updateDiscord, 10000);
             window.addEventListener("resize", initDraggableWindows);
