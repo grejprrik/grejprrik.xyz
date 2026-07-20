@@ -445,12 +445,15 @@
         .music-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 5px;
+            gap: 10px;
+            width: 100%;
         }
 
         .music-card {
             border: 1px solid var(--win-border-dark);
             aspect-ratio: 1;
+            min-width: 0;
+            overflow: hidden;
         }
 
         .music-cover { width: 100%; height: 100%; object-fit: cover; }
@@ -503,17 +506,39 @@
         .copy-toast.show { display: block; }
 
         @media (max-width: 600px) {
-            .music-grid { grid-template-columns: repeat(2, 1fr); }
+            body, html {
+                height: auto;
+                overflow: visible;
+            }
+            .music-grid { 
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
             .desktop {
-                overflow-y: auto;
+                height: auto !important;
+                overflow-y: auto !important;
                 display: flex;
                 flex-direction: column;
-                gap: 20px;
+                gap: 15px;
                 align-items: center;
+                padding: 15px;
+                position: relative !important;
             }
             .window {
-                position: static;
-                width: 95vw;
+                position: static !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                max-height: 60vh !important;
+                margin-bottom: 10px;
+                top: auto !important;
+                left: auto !important;
+                display: flex !important;
+                flex-direction: column !important;
+            }
+            .window-body {
+                flex: 1;
+                overflow-y: auto !important;
+                min-height: 0;
             }
         }
     </style>
@@ -775,7 +800,7 @@
 
                 document.getElementById("discord-widget-win").style.display = "block";
                 initDraggableWindows();
-                document.getElementById("discord-avatar-img").src = `https://cdn.discordapp.com/avatars/${data.discord_user.id}/${data.discord_user.avatar}.png?size=80`;
+                document.getElementById("discord-avatar-img").src = "images/icons/discord-pixelart.png";
                 document.getElementById("discord-username").textContent = data.discord_user.username;
                 
                 const status = document.getElementById("discord-status-indicator");
