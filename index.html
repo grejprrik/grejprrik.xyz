@@ -123,7 +123,7 @@
         }
 
         .window.minimized {
-            display: none;
+            display: none !important;
         }
 
         .resize-handle {
@@ -826,8 +826,12 @@
                 const { data, success } = await res.json();
                 if (!success) return;
 
-                document.getElementById("discord-widget-win").style.display = "block";
-                initDraggableWindows();
+                const discordWin = document.getElementById("discord-widget-win");
+                const isHidden = discordWin?.classList.contains('minimized');
+                if (discordWin && !isHidden) {
+                    discordWin.style.display = "block";
+                    initDraggableWindows();
+                }
                 document.getElementById("discord-avatar-img").src = "images/icons/discord-pixelart.png";
                 document.getElementById("discord-username").textContent = data.discord_user.username;
                 
@@ -961,6 +965,7 @@
 
         function minimizeWindow(winEl) {
             winEl.classList.add('minimized');
+            winEl.style.display = 'none';
             if (activeWindowId === winEl.id) activeWindowId = null;
             const btn = document.querySelector(`[data-for-window="${winEl.id}"]`);
             if (btn) btn.classList.remove('active');
@@ -968,6 +973,9 @@
 
         function restoreWindow(winEl) {
             winEl.classList.remove('minimized');
+            if (winEl.style.display === 'none') {
+                winEl.style.display = 'block';
+            }
             bringToFront(winEl);
         }
 
@@ -990,6 +998,7 @@
 
         function closeWindow(winEl) {
             winEl.classList.add('minimized');
+            winEl.style.display = 'none';
             if (activeWindowId === winEl.id) activeWindowId = null;
             removeTaskbarButton(winEl);
         }
