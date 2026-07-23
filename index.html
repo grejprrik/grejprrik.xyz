@@ -14,9 +14,6 @@
     <link href="https://fonts.googleapis.com" rel="preconnect">
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
     <link href="https://cdnjs.cloudflare.com" rel="preconnect">
-    <!-- Font loading optimization: media="print" trick loads async without blocking render
-         Tested approaches: rel="preload" caused 2s FCP regression (0.9s→2.9s)
-         Current method achieves 94/100 PageSpeed with 0.9s FCP - DO NOT CHANGE -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet"></noscript>
     <link href="https://discord.com" rel="dns-prefetch">
@@ -71,21 +68,42 @@
             position: relative;
         }
 
-        /* Windows 95 Style Window */
+        /* win95 */
         .window {
             background: var(--win-bg);
             border: 2px solid;
             border-color: var(--win-border-light) var(--win-border-dark) var(--win-border-dark) var(--win-border-light);
             box-shadow: 1px 1px 0 0 var(--win-border-dark-2), inset 1px 1px 0 0 var(--win-border-light-2);
             padding: 2px;
-            width: 100%;
-            max-width: 800px;
-            min-width: 220px;
-            min-height: 100px;
-            margin-bottom: 20px;
+            width: 340px;
+            max-width: 480px;
+            min-width: 240px;
+            min-height: 130px;
+            height: 150px;
+            margin-bottom: 12px;
             position: absolute;
             top: 20px;
             left: 20px;
+        }
+
+        .window#window-header {
+            height: 180px;
+        }
+
+        .window#window-games,
+        .window#discord-widget-win {
+            height: 120px;
+            min-height: 120px;
+        }
+
+        .window#window-games .window-body,
+        .window#discord-widget-win .window-body {
+            padding: 4px;
+        }
+
+        .window#window-music {
+            min-height: 220px;
+            height: 260px;
         }
 
         .window.dragging {
@@ -212,11 +230,13 @@
         }
 
         .window-body {
-            padding: 15px;
+            padding: 8px;
             overflow: auto;
+            min-height: 0;
+            height: calc(100% - 22px);
         }
 
-        /* Taskbar */
+        /* taskbar */
         .taskbar {
             position: fixed;
             bottom: 0;
@@ -255,7 +275,7 @@
             transform: translateY(0);
         }
 
-        /* Press effect: translate instead of changing padding/borders to avoid layout shift */
+        /* i forgot what this does */
         .start-button:active, .start-button.active {
             box-shadow: none;
             transform: translateY(1px);
@@ -444,15 +464,18 @@
 
         .music-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            grid-auto-rows: minmax(120px, auto);
             gap: 10px;
             width: 100%;
+            min-height: 140px;
         }
 
         .music-card {
             border: 1px solid var(--win-border-dark);
             aspect-ratio: 1;
-            min-width: 0;
+            min-width: 120px;
+            min-height: 120px;
             overflow: hidden;
         }
 
@@ -564,7 +587,7 @@
                 <p class="subtitle" style="margin-top: 5px; color: var(--accent); font-weight: bold;"></p>
                 <div class="sunken-panel" style="margin-top: 15px;">
                     <ul class="info-list" style="list-style: none;">
-                        <li><span id="lang-studying">Studuji na</span> <a href="https://www.goah.cz" target="_blank">GOAH Hodonín</a></li>
+                        <li><span id="lang-studying">Studuji na</span> <a href="https://www.goah.cz" target="_blank" rel="noopener noreferrer">GOAH Hodonín</a></li>
                         <li id="lang-location">Hodonín, CZ</li>
                     </ul>
                 </div>
@@ -655,7 +678,7 @@
 
     <!-- Taskbar -->
     <div class="taskbar" id="taskbar">
-        <button class="start-button" id="startButton" aria-label="Start">
+        <button class="start-button" id="startButton" aria-label="Start" aria-haspopup="true" aria-expanded="false" aria-controls="startMenu" type="button">
             <img class="full-start" src="images/icons/windows95/Start_button_Windows_4.00.337.png" alt="Start">
         </button>
         <div class="taskbar-divider"></div>
@@ -677,31 +700,31 @@
                     <img src="https://win98icons.alexmeub.com/icons/png/directory_open_file_mydocs-4.png" width="20" height="20" alt="">
                     <span id="nav-gallery">Gallery</span>
                 </a>
-                <a href="https://github.com/grejprrik/grejprrik.xyz" target="_blank" class="start-menu-item">
+                <a href="https://github.com/grejprrik/grejprrik.xyz" target="_blank" rel="noopener noreferrer" class="start-menu-item">
                     <img src="https://cdn.simpleicons.org/github" width="20" height="20" alt="">
                     GitHub
                 </a>
-                <a href="https://www.last.fm/user/grejprrik" target="_blank" class="start-menu-item">
+                <a href="https://www.last.fm/user/grejprrik" target="_blank" rel="noopener noreferrer" class="start-menu-item">
                     <img src="https://cdn.simpleicons.org/lastdotfm/ff4d4d" width="20" height="20" alt="">
                     Last.fm
                 </a>
-                <a href="https://www.instagram.com/grejprrik.xyz" target="_blank" class="start-menu-item">
+                <a href="https://www.instagram.com/grejprrik.xyz" target="_blank" rel="noopener noreferrer" class="start-menu-item">
                     <img src="https://cdn.simpleicons.org/instagram" width="20" height="20" alt="">
                     Instagram
                 </a>
-                <a href="https://steamcommunity.com/id/grejprrik/" target="_blank" class="start-menu-item">
+                <a href="https://steamcommunity.com/id/grejprrik/" target="_blank" rel="noopener noreferrer" class="start-menu-item">
                     <img src="https://cdn.simpleicons.org/steam" width="20" height="20" alt="">
                     Steam
                 </a>
                 <div style="height: 1px; background: var(--win-border-dark); margin: 5px 0;"></div>
-                <div class="start-menu-item" onclick="toggleLanguage()">
+                <button type="button" class="start-menu-item" onclick="toggleLanguage()">
                     <img src="https://win98icons.alexmeub.com/icons/png/msagent-3.png" width="20" height="20" alt="">
                     Switch Language
-                </div>
-                <div class="start-menu-item" onclick="copyDiscord(event)">
+                </button>
+                <button type="button" class="start-menu-item" onclick="copyDiscord(event)">
                     <img src="https://cdn.simpleicons.org/discord" width="20" height="20" alt="">
                     Copy Discord
-                </div>
+                </button>
             </div>
         </div>
     </div>
@@ -733,8 +756,13 @@
         }
 
         function closeStartMenu() {
-            document.getElementById("startMenu").classList.remove("active");
-            document.getElementById("startButton").classList.remove("active");
+            const startMenu = document.getElementById("startMenu");
+            const startButton = document.getElementById("startButton");
+            if (startMenu) startMenu.classList.remove("active");
+            if (startButton) {
+                startButton.classList.remove("active");
+                startButton.setAttribute("aria-expanded", "false");
+            }
         }
 
         // Last.fm
@@ -842,13 +870,37 @@
         }
         const fmt = ms => `${Math.floor(ms/60000)}:${(Math.floor(ms/1000)%60).toString().padStart(2,'0')}`;
 
+        function writeTextToClipboard(text) {
+            if (navigator.clipboard?.writeText) {
+                return navigator.clipboard.writeText(text);
+            }
+            const textarea = document.createElement("textarea");
+            textarea.value = text;
+            textarea.setAttribute("readonly", "");
+            textarea.style.position = "fixed";
+            textarea.style.left = "-9999px";
+            textarea.style.opacity = "0";
+            document.body.appendChild(textarea);
+            textarea.select();
+            let success = false;
+            try {
+                success = document.execCommand("copy");
+            } catch (e) {
+                success = false;
+            }
+            document.body.removeChild(textarea);
+            return success ? Promise.resolve() : Promise.reject(new Error("clipboard unavailable"));
+        }
+
         function copyDiscord() {
-            navigator.clipboard.writeText("grejprrik.xyz").then(() => {
+            writeTextToClipboard("grejprrik.xyz").then(() => {
                 let toast = document.querySelector(".copy-toast") || document.createElement("div");
                 toast.className = "copy-toast show";
                 toast.textContent = "Discord tag copied!";
                 document.body.appendChild(toast);
                 setTimeout(() => toast.classList.remove("show"), 2500);
+            }).catch((e) => {
+                console.warn("clipboard failed:", e);
             });
             closeStartMenu();
         }
@@ -1032,20 +1084,25 @@
                     startTop = winEl.offsetTop;
                     startLeft = winEl.offsetLeft;
 
+                    const minWidth = winEl.id === 'window-music' ? 260 : 240;
+                    const minHeight = winEl.id === 'window-music' ? 220 : (winEl.id === 'window-header' ? 180 : 120);
+                    let dragStarted = false;
                     const onMove = (ev) => {
                         if (!resizing) return;
                         const dx = ev.clientX - startX;
                         const dy = ev.clientY - startY;
+                        if (!dragStarted && Math.abs(dx) + Math.abs(dy) < 8) return;
+                        dragStarted = true;
 
-                        if (edge.includes('e')) winEl.style.width = Math.max(220, startW + dx) + 'px';
-                        if (edge.includes('s')) winEl.style.height = Math.max(100, startH + dy) + 'px';
+                        if (edge.includes('e')) winEl.style.width = Math.max(minWidth, startW + dx) + 'px';
+                        if (edge.includes('s')) winEl.style.height = Math.max(minHeight, startH + dy) + 'px';
                         if (edge.includes('w')) {
-                            const newW = Math.max(220, startW - dx);
+                            const newW = Math.max(minWidth, startW - dx);
                             winEl.style.width = newW + 'px';
                             winEl.style.left = (startLeft + (startW - newW)) + 'px';
                         }
                         if (edge.includes('n')) {
-                            const newH = Math.max(100, startH - dy);
+                            const newH = Math.max(minHeight, startH - dy);
                             winEl.style.height = newH + 'px';
                             winEl.style.top = (startTop + (startH - newH)) + 'px';
                         }
@@ -1187,12 +1244,24 @@
 
             const startBtn = document.getElementById("startButton");
             const startMenu = document.getElementById("startMenu");
-            startBtn.onclick = e => {
-                e.stopPropagation();
-                startMenu.classList.toggle("active");
-                startBtn.classList.toggle("active");
-            };
-            document.onclick = closeStartMenu;
+            if (startBtn && startMenu) {
+                startBtn.onclick = e => {
+                    e.stopPropagation();
+                    const isOpen = startMenu.classList.toggle("active");
+                    startBtn.classList.toggle("active", isOpen);
+                    startBtn.setAttribute("aria-expanded", String(isOpen));
+                };
+                startBtn.addEventListener("keydown", (e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        startBtn.click();
+                    }
+                });
+                document.addEventListener("keydown", (e) => {
+                    if (e.key === "Escape") closeStartMenu();
+                });
+            }
+            document.addEventListener("click", closeStartMenu);
 
             const mute = document.getElementById("muteToggle");
             const muteIcon = document.getElementById('muteIcon');
