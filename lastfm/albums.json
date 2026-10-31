@@ -67,38 +67,6 @@
       },
       {
         "artist": {
-          "url": "https://www.last.fm/music/Fatboy+Slim",
-          "name": "Fatboy Slim",
-          "mbid": "34c63966-445c-4613-afe1-4f0e1e53ae9a"
-        },
-        "image": [
-          {
-            "size": "small",
-            "#text": "https://lastfm-img.freetls.fastly.net/i/u/34s/76a66c0847084ba6b1d0b250ddc8677b.jpg"
-          },
-          {
-            "size": "medium",
-            "#text": "https://lastfm-img.freetls.fastly.net/i/u/64s/76a66c0847084ba6b1d0b250ddc8677b.jpg"
-          },
-          {
-            "size": "large",
-            "#text": "https://lastfm-img.freetls.fastly.net/i/u/174s/76a66c0847084ba6b1d0b250ddc8677b.jpg"
-          },
-          {
-            "size": "extralarge",
-            "#text": "https://lastfm-img.freetls.fastly.net/i/u/300x300/76a66c0847084ba6b1d0b250ddc8677b.jpg"
-          }
-        ],
-        "mbid": "00ff1d15-09a0-49a2-ab51-78d839df560f",
-        "url": "https://www.last.fm/music/Fatboy+Slim/Santa+Cruz",
-        "playcount": "5",
-        "@attr": {
-          "rank": "3"
-        },
-        "name": "Santa Cruz"
-      },
-      {
-        "artist": {
           "url": "https://www.last.fm/music/Far+Apart",
           "name": "Far Apart",
           "mbid": "20e91c80-5514-496b-ab86-c713e8b2080d"
@@ -125,16 +93,48 @@
         "url": "https://www.last.fm/music/Far+Apart/Dartmouth",
         "playcount": "4",
         "@attr": {
-          "rank": "4"
+          "rank": "3"
         },
         "name": "Dartmouth"
+      },
+      {
+        "artist": {
+          "url": "https://www.last.fm/music/Sunk+Loto",
+          "name": "Sunk Loto",
+          "mbid": "65e0874d-cb1a-40a1-b796-888fde813df1"
+        },
+        "image": [
+          {
+            "size": "small",
+            "#text": "https://lastfm-img.freetls.fastly.net/i/u/34s/574d8b7bff674947e6414911e5fa7bc3.png"
+          },
+          {
+            "size": "medium",
+            "#text": "https://lastfm-img.freetls.fastly.net/i/u/64s/574d8b7bff674947e6414911e5fa7bc3.png"
+          },
+          {
+            "size": "large",
+            "#text": "https://lastfm-img.freetls.fastly.net/i/u/174s/574d8b7bff674947e6414911e5fa7bc3.png"
+          },
+          {
+            "size": "extralarge",
+            "#text": "https://lastfm-img.freetls.fastly.net/i/u/300x300/574d8b7bff674947e6414911e5fa7bc3.png"
+          }
+        ],
+        "mbid": "e70c5e70-c0da-4f9d-bc8e-13a080c63a81",
+        "url": "https://www.last.fm/music/Sunk+Loto/Society+Anxiety",
+        "playcount": "4",
+        "@attr": {
+          "rank": "4"
+        },
+        "name": "Society Anxiety"
       }
     ],
     "@attr": {
       "user": "grejprrik",
-      "totalPages": "15",
+      "totalPages": "14",
       "page": "1",
-      "total": "58",
+      "total": "54",
       "perPage": "4"
     }
   }
