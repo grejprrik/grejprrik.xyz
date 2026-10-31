@@ -1,0 +1,141 @@
+{
+  "topalbums": {
+    "album": [
+      {
+        "artist": {
+          "url": "https://www.last.fm/music/Underworld",
+          "name": "Underworld",
+          "mbid": "ba2f4f3b-0293-4bc8-bb94-2f73b5207343"
+        },
+        "image": [
+          {
+            "size": "small",
+            "#text": "https://lastfm-img.freetls.fastly.net/i/u/34s/66830ef744c94e6ab3678c2bb7b02b1e.png"
+          },
+          {
+            "size": "medium",
+            "#text": "https://lastfm-img.freetls.fastly.net/i/u/64s/66830ef744c94e6ab3678c2bb7b02b1e.png"
+          },
+          {
+            "size": "large",
+            "#text": "https://lastfm-img.freetls.fastly.net/i/u/174s/66830ef744c94e6ab3678c2bb7b02b1e.png"
+          },
+          {
+            "size": "extralarge",
+            "#text": "https://lastfm-img.freetls.fastly.net/i/u/300x300/66830ef744c94e6ab3678c2bb7b02b1e.png"
+          }
+        ],
+        "mbid": "1a163c99-9890-4792-a9ab-26ec59ec883e",
+        "url": "https://www.last.fm/music/Underworld/Oblivion+With+Bells",
+        "playcount": "13",
+        "@attr": {
+          "rank": "1"
+        },
+        "name": "Oblivion With Bells"
+      },
+      {
+        "artist": {
+          "url": "https://www.last.fm/music/DJ+Shadow",
+          "name": "DJ Shadow",
+          "mbid": "efa2c11a-1a35-4b60-bc1b-66d37de88511"
+        },
+        "image": [
+          {
+            "size": "small",
+            "#text": "https://lastfm-img.freetls.fastly.net/i/u/34s/808a8146b33bef2cab866294563a76b8.jpg"
+          },
+          {
+            "size": "medium",
+            "#text": "https://lastfm-img.freetls.fastly.net/i/u/64s/808a8146b33bef2cab866294563a76b8.jpg"
+          },
+          {
+            "size": "large",
+            "#text": "https://lastfm-img.freetls.fastly.net/i/u/174s/808a8146b33bef2cab866294563a76b8.jpg"
+          },
+          {
+            "size": "extralarge",
+            "#text": "https://lastfm-img.freetls.fastly.net/i/u/300x300/808a8146b33bef2cab866294563a76b8.jpg"
+          }
+        ],
+        "mbid": "",
+        "url": "https://www.last.fm/music/DJ+Shadow/Endtroducing+(Deluxe+Edition)",
+        "playcount": "10",
+        "@attr": {
+          "rank": "2"
+        },
+        "name": "Endtroducing (Deluxe Edition)"
+      },
+      {
+        "artist": {
+          "url": "https://www.last.fm/music/Fatboy+Slim",
+          "name": "Fatboy Slim",
+          "mbid": "34c63966-445c-4613-afe1-4f0e1e53ae9a"
+        },
+        "image": [
+          {
+            "size": "small",
+            "#text": "https://lastfm-img.freetls.fastly.net/i/u/34s/76a66c0847084ba6b1d0b250ddc8677b.jpg"
+          },
+          {
+            "size": "medium",
+            "#text": "https://lastfm-img.freetls.fastly.net/i/u/64s/76a66c0847084ba6b1d0b250ddc8677b.jpg"
+          },
+          {
+            "size": "large",
+            "#text": "https://lastfm-img.freetls.fastly.net/i/u/174s/76a66c0847084ba6b1d0b250ddc8677b.jpg"
+          },
+          {
+            "size": "extralarge",
+            "#text": "https://lastfm-img.freetls.fastly.net/i/u/300x300/76a66c0847084ba6b1d0b250ddc8677b.jpg"
+          }
+        ],
+        "mbid": "00ff1d15-09a0-49a2-ab51-78d839df560f",
+        "url": "https://www.last.fm/music/Fatboy+Slim/Santa+Cruz",
+        "playcount": "5",
+        "@attr": {
+          "rank": "3"
+        },
+        "name": "Santa Cruz"
+      },
+      {
+        "artist": {
+          "url": "https://www.last.fm/music/Far+Apart",
+          "name": "Far Apart",
+          "mbid": "20e91c80-5514-496b-ab86-c713e8b2080d"
+        },
+        "image": [
+          {
+            "size": "small",
+            "#text": "https://lastfm-img.freetls.fastly.net/i/u/34s/a4a833cd12fca4764a531f2081453df8.jpg"
+          },
+          {
+            "size": "medium",
+            "#text": "https://lastfm-img.freetls.fastly.net/i/u/64s/a4a833cd12fca4764a531f2081453df8.jpg"
+          },
+          {
+            "size": "large",
+            "#text": "https://lastfm-img.freetls.fastly.net/i/u/174s/a4a833cd12fca4764a531f2081453df8.jpg"
+          },
+          {
+            "size": "extralarge",
+            "#text": "https://lastfm-img.freetls.fastly.net/i/u/300x300/a4a833cd12fca4764a531f2081453df8.jpg"
+          }
+        ],
+        "mbid": "",
+        "url": "https://www.last.fm/music/Far+Apart/Dartmouth",
+        "playcount": "4",
+        "@attr": {
+          "rank": "4"
+        },
+        "name": "Dartmouth"
+      }
+    ],
+    "@attr": {
+      "user": "grejprrik",
+      "totalPages": "15",
+      "page": "1",
+      "total": "58",
+      "perPage": "4"
+    }
+  }
+}

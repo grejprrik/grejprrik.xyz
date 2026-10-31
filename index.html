@@ -768,7 +768,8 @@
         // Last.fm
         async function updateAlbums() {
             try {
-                const res = await fetch(`https://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=grejprrik&api_key=06a3f4e3025d7a27141ecdd8eb59702d&period=7day&limit=4&format=json`);
+                const res = await fetch('./lastfm/albums.json?ts=' + Date.now());
+                if (!res.ok) throw new Error(`Last.fm data request failed with status ${res.status}`);
                 const data = await res.json();
                 if (!data?.topalbums?.album) return;
                 let albums = data.topalbums.album;
@@ -776,7 +777,7 @@
                 renderAlbums(albums);
                 localStorage.setItem("lastfm_cache", JSON.stringify(albums));
             } catch (e) {
-                console.warn("Last.fm error:", e);
+                console.warn("Last.fm data error:", e);
                 const cache = localStorage.getItem("lastfm_cache");
                 if (cache) renderAlbums(JSON.parse(cache));
             }
