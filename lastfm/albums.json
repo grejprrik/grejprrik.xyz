@@ -27,7 +27,7 @@
         ],
         "mbid": "1a163c99-9890-4792-a9ab-26ec59ec883e",
         "url": "https://www.last.fm/music/Underworld/Oblivion+With+Bells",
-        "playcount": "7",
+        "playcount": "5",
         "@attr": {
           "rank": "1"
         },
@@ -132,9 +132,9 @@
     ],
     "@attr": {
       "user": "grejprrik",
-      "totalPages": "13",
+      "totalPages": "11",
       "page": "1",
-      "total": "51",
+      "total": "43",
       "perPage": "4"
     }
   }
