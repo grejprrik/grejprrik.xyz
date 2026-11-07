@@ -3,6 +3,38 @@
     "album": [
       {
         "artist": {
+          "url": "https://www.last.fm/music/Depeche+Mode",
+          "name": "Depeche Mode",
+          "mbid": "8538e728-ca0b-4321-b7e5-cff6565dd4c0"
+        },
+        "image": [
+          {
+            "size": "small",
+            "#text": "https://lastfm-img.freetls.fastly.net/i/u/34s/7d25e97867a96c8e1c982371993b3219.jpg"
+          },
+          {
+            "size": "medium",
+            "#text": "https://lastfm-img.freetls.fastly.net/i/u/64s/7d25e97867a96c8e1c982371993b3219.jpg"
+          },
+          {
+            "size": "large",
+            "#text": "https://lastfm-img.freetls.fastly.net/i/u/174s/7d25e97867a96c8e1c982371993b3219.jpg"
+          },
+          {
+            "size": "extralarge",
+            "#text": "https://lastfm-img.freetls.fastly.net/i/u/300x300/7d25e97867a96c8e1c982371993b3219.jpg"
+          }
+        ],
+        "mbid": "",
+        "url": "https://www.last.fm/music/Depeche+Mode/Songs+of+Faith+and+Devotion+(Deluxe)",
+        "playcount": "12",
+        "@attr": {
+          "rank": "1"
+        },
+        "name": "Songs of Faith and Devotion (Deluxe)"
+      },
+      {
+        "artist": {
           "url": "https://www.last.fm/music/Rytmus",
           "name": "Rytmus",
           "mbid": "d7df60f4-5710-4405-89cc-c69a9ba198be"
@@ -27,43 +59,11 @@
         ],
         "mbid": "7d95cd27-7fb7-483b-852e-d543b5a935c0",
         "url": "https://www.last.fm/music/Rytmus/Bengoro",
-        "playcount": "4",
-        "@attr": {
-          "rank": "1"
-        },
-        "name": "Bengoro"
-      },
-      {
-        "artist": {
-          "url": "https://www.last.fm/music/Sunk+Loto",
-          "name": "Sunk Loto",
-          "mbid": "65e0874d-cb1a-40a1-b796-888fde813df1"
-        },
-        "image": [
-          {
-            "size": "small",
-            "#text": "https://lastfm-img.freetls.fastly.net/i/u/34s/574d8b7bff674947e6414911e5fa7bc3.png"
-          },
-          {
-            "size": "medium",
-            "#text": "https://lastfm-img.freetls.fastly.net/i/u/64s/574d8b7bff674947e6414911e5fa7bc3.png"
-          },
-          {
-            "size": "large",
-            "#text": "https://lastfm-img.freetls.fastly.net/i/u/174s/574d8b7bff674947e6414911e5fa7bc3.png"
-          },
-          {
-            "size": "extralarge",
-            "#text": "https://lastfm-img.freetls.fastly.net/i/u/300x300/574d8b7bff674947e6414911e5fa7bc3.png"
-          }
-        ],
-        "mbid": "e70c5e70-c0da-4f9d-bc8e-13a080c63a81",
-        "url": "https://www.last.fm/music/Sunk+Loto/Society+Anxiety",
-        "playcount": "4",
+        "playcount": "5",
         "@attr": {
           "rank": "2"
         },
-        "name": "Society Anxiety"
+        "name": "Bengoro"
       },
       {
         "artist": {
@@ -91,7 +91,7 @@
         ],
         "mbid": "165b5a60-0e38-46bc-8e01-3a68ead5f9ff",
         "url": "https://www.last.fm/music/+noredirect/Jiri+Schmitzer/Bouda",
-        "playcount": "3",
+        "playcount": "4",
         "@attr": {
           "rank": "3"
         },
@@ -99,42 +99,42 @@
       },
       {
         "artist": {
-          "url": "https://www.last.fm/music/Dry+Cell",
-          "name": "Dry Cell",
-          "mbid": "1561eae3-a817-4204-bee8-c39095dd8ef2"
+          "url": "https://www.last.fm/music/Linkin+Park",
+          "name": "Linkin Park",
+          "mbid": "f59c5520-5f46-4d2c-b2c4-822eabf53419"
         },
         "image": [
           {
             "size": "small",
-            "#text": "https://lastfm-img.freetls.fastly.net/i/u/34s/aabb606bc1215c856d02f921917e29b2.jpg"
+            "#text": "https://lastfm-img.freetls.fastly.net/i/u/34s/c21b3923a4d3ff5629996f3f8e178140.jpg"
           },
           {
             "size": "medium",
-            "#text": "https://lastfm-img.freetls.fastly.net/i/u/64s/aabb606bc1215c856d02f921917e29b2.jpg"
+            "#text": "https://lastfm-img.freetls.fastly.net/i/u/64s/c21b3923a4d3ff5629996f3f8e178140.jpg"
           },
           {
             "size": "large",
-            "#text": "https://lastfm-img.freetls.fastly.net/i/u/174s/aabb606bc1215c856d02f921917e29b2.jpg"
+            "#text": "https://lastfm-img.freetls.fastly.net/i/u/174s/c21b3923a4d3ff5629996f3f8e178140.jpg"
           },
           {
             "size": "extralarge",
-            "#text": "https://lastfm-img.freetls.fastly.net/i/u/300x300/aabb606bc1215c856d02f921917e29b2.jpg"
+            "#text": "https://lastfm-img.freetls.fastly.net/i/u/300x300/c21b3923a4d3ff5629996f3f8e178140.jpg"
           }
         ],
-        "mbid": "2dfa98d9-d44e-446b-b251-f5759bb4c26b",
-        "url": "https://www.last.fm/music/Dry+Cell/Disconnected",
+        "mbid": "04b8953c-969a-423a-8847-ccf78b83d013",
+        "url": "https://www.last.fm/music/Linkin+Park/Hybrid+Theory",
         "playcount": "2",
         "@attr": {
           "rank": "4"
         },
-        "name": "Disconnected"
+        "name": "Hybrid Theory"
       }
     ],
     "@attr": {
       "user": "grejprrik",
-      "totalPages": "3",
+      "totalPages": "4",
       "page": "1",
-      "total": "9",
+      "total": "15",
       "perPage": "4"
     }
   }
