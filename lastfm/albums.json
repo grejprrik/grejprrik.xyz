@@ -35,38 +35,6 @@
       },
       {
         "artist": {
-          "url": "https://www.last.fm/music/Rytmus",
-          "name": "Rytmus",
-          "mbid": "d7df60f4-5710-4405-89cc-c69a9ba198be"
-        },
-        "image": [
-          {
-            "size": "small",
-            "#text": "https://lastfm-img.freetls.fastly.net/i/u/34s/f8d3980b412845619f3d31570be67d03.jpg"
-          },
-          {
-            "size": "medium",
-            "#text": "https://lastfm-img.freetls.fastly.net/i/u/64s/f8d3980b412845619f3d31570be67d03.jpg"
-          },
-          {
-            "size": "large",
-            "#text": "https://lastfm-img.freetls.fastly.net/i/u/174s/f8d3980b412845619f3d31570be67d03.jpg"
-          },
-          {
-            "size": "extralarge",
-            "#text": "https://lastfm-img.freetls.fastly.net/i/u/300x300/f8d3980b412845619f3d31570be67d03.jpg"
-          }
-        ],
-        "mbid": "7d95cd27-7fb7-483b-852e-d543b5a935c0",
-        "url": "https://www.last.fm/music/Rytmus/Bengoro",
-        "playcount": "5",
-        "@attr": {
-          "rank": "2"
-        },
-        "name": "Bengoro"
-      },
-      {
-        "artist": {
           "url": "https://www.last.fm/music/+noredirect/Jiri+Schmitzer",
           "name": "Jiri Schmitzer",
           "mbid": ""
@@ -93,7 +61,7 @@
         "url": "https://www.last.fm/music/+noredirect/Jiri+Schmitzer/Bouda",
         "playcount": "4",
         "@attr": {
-          "rank": "3"
+          "rank": "2"
         },
         "name": "Bouda"
       },
@@ -125,9 +93,41 @@
         "url": "https://www.last.fm/music/Linkin+Park/Hybrid+Theory",
         "playcount": "2",
         "@attr": {
-          "rank": "4"
+          "rank": "3"
         },
         "name": "Hybrid Theory"
+      },
+      {
+        "artist": {
+          "url": "https://www.last.fm/music/Rytmus",
+          "name": "Rytmus",
+          "mbid": "d7df60f4-5710-4405-89cc-c69a9ba198be"
+        },
+        "image": [
+          {
+            "size": "small",
+            "#text": "https://lastfm-img.freetls.fastly.net/i/u/34s/f8d3980b412845619f3d31570be67d03.jpg"
+          },
+          {
+            "size": "medium",
+            "#text": "https://lastfm-img.freetls.fastly.net/i/u/64s/f8d3980b412845619f3d31570be67d03.jpg"
+          },
+          {
+            "size": "large",
+            "#text": "https://lastfm-img.freetls.fastly.net/i/u/174s/f8d3980b412845619f3d31570be67d03.jpg"
+          },
+          {
+            "size": "extralarge",
+            "#text": "https://lastfm-img.freetls.fastly.net/i/u/300x300/f8d3980b412845619f3d31570be67d03.jpg"
+          }
+        ],
+        "mbid": "7d95cd27-7fb7-483b-852e-d543b5a935c0",
+        "url": "https://www.last.fm/music/Rytmus/Bengoro",
+        "playcount": "2",
+        "@attr": {
+          "rank": "4"
+        },
+        "name": "Bengoro"
       }
     ],
     "@attr": {
