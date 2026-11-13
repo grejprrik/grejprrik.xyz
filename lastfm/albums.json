@@ -35,38 +35,6 @@
       },
       {
         "artist": {
-          "url": "https://www.last.fm/music/+noredirect/Jiri+Schmitzer",
-          "name": "Jiri Schmitzer",
-          "mbid": ""
-        },
-        "image": [
-          {
-            "size": "small",
-            "#text": "https://lastfm-img.freetls.fastly.net/i/u/34s/565849d202311d65a7a020991e45b58d.jpg"
-          },
-          {
-            "size": "medium",
-            "#text": "https://lastfm-img.freetls.fastly.net/i/u/64s/565849d202311d65a7a020991e45b58d.jpg"
-          },
-          {
-            "size": "large",
-            "#text": "https://lastfm-img.freetls.fastly.net/i/u/174s/565849d202311d65a7a020991e45b58d.jpg"
-          },
-          {
-            "size": "extralarge",
-            "#text": "https://lastfm-img.freetls.fastly.net/i/u/300x300/565849d202311d65a7a020991e45b58d.jpg"
-          }
-        ],
-        "mbid": "165b5a60-0e38-46bc-8e01-3a68ead5f9ff",
-        "url": "https://www.last.fm/music/+noredirect/Jiri+Schmitzer/Bouda",
-        "playcount": "2",
-        "@attr": {
-          "rank": "2"
-        },
-        "name": "Bouda"
-      },
-      {
-        "artist": {
           "url": "https://www.last.fm/music/Linkin+Park",
           "name": "Linkin Park",
           "mbid": "f59c5520-5f46-4d2c-b2c4-822eabf53419"
@@ -93,48 +61,80 @@
         "url": "https://www.last.fm/music/Linkin+Park/Hybrid+Theory",
         "playcount": "2",
         "@attr": {
-          "rank": "3"
+          "rank": "2"
         },
         "name": "Hybrid Theory"
       },
       {
         "artist": {
-          "url": "https://www.last.fm/music/Rytmus",
-          "name": "Rytmus",
-          "mbid": "d7df60f4-5710-4405-89cc-c69a9ba198be"
+          "url": "https://www.last.fm/music/Darwin%27s+Waiting+Room",
+          "name": "Darwin's Waiting Room",
+          "mbid": "739bc995-11b9-4e39-94f9-f75b429da8fe"
         },
         "image": [
           {
             "size": "small",
-            "#text": "https://lastfm-img.freetls.fastly.net/i/u/34s/f8d3980b412845619f3d31570be67d03.jpg"
+            "#text": "https://lastfm-img.freetls.fastly.net/i/u/34s/3f0307da0bef4fcc0dcdb92a3d9c014b.png"
           },
           {
             "size": "medium",
-            "#text": "https://lastfm-img.freetls.fastly.net/i/u/64s/f8d3980b412845619f3d31570be67d03.jpg"
+            "#text": "https://lastfm-img.freetls.fastly.net/i/u/64s/3f0307da0bef4fcc0dcdb92a3d9c014b.png"
           },
           {
             "size": "large",
-            "#text": "https://lastfm-img.freetls.fastly.net/i/u/174s/f8d3980b412845619f3d31570be67d03.jpg"
+            "#text": "https://lastfm-img.freetls.fastly.net/i/u/174s/3f0307da0bef4fcc0dcdb92a3d9c014b.png"
           },
           {
             "size": "extralarge",
-            "#text": "https://lastfm-img.freetls.fastly.net/i/u/300x300/f8d3980b412845619f3d31570be67d03.jpg"
+            "#text": "https://lastfm-img.freetls.fastly.net/i/u/300x300/3f0307da0bef4fcc0dcdb92a3d9c014b.png"
           }
         ],
-        "mbid": "7d95cd27-7fb7-483b-852e-d543b5a935c0",
-        "url": "https://www.last.fm/music/Rytmus/Bengoro",
-        "playcount": "2",
+        "mbid": "595088ee-8264-453a-9520-b6b61874e920",
+        "url": "https://www.last.fm/music/Darwin%27s+Waiting+Room/Orphan",
+        "playcount": "1",
+        "@attr": {
+          "rank": "3"
+        },
+        "name": "Orphan"
+      },
+      {
+        "artist": {
+          "url": "https://www.last.fm/music/Depeche+Mode",
+          "name": "Depeche Mode",
+          "mbid": "8538e728-ca0b-4321-b7e5-cff6565dd4c0"
+        },
+        "image": [
+          {
+            "size": "small",
+            "#text": "https://lastfm-img.freetls.fastly.net/i/u/34s/b725be17756c1ff17b6ba3e36e18e8ed.png"
+          },
+          {
+            "size": "medium",
+            "#text": "https://lastfm-img.freetls.fastly.net/i/u/64s/b725be17756c1ff17b6ba3e36e18e8ed.png"
+          },
+          {
+            "size": "large",
+            "#text": "https://lastfm-img.freetls.fastly.net/i/u/174s/b725be17756c1ff17b6ba3e36e18e8ed.png"
+          },
+          {
+            "size": "extralarge",
+            "#text": "https://lastfm-img.freetls.fastly.net/i/u/300x300/b725be17756c1ff17b6ba3e36e18e8ed.png"
+          }
+        ],
+        "mbid": "",
+        "url": "https://www.last.fm/music/Depeche+Mode/Music+for+the+Masses+(Bonus+Track+Version)",
+        "playcount": "1",
         "@attr": {
           "rank": "4"
         },
-        "name": "Bengoro"
+        "name": "Music for the Masses (Bonus Track Version)"
       }
     ],
     "@attr": {
       "user": "grejprrik",
       "totalPages": "4",
       "page": "1",
-      "total": "15",
+      "total": "13",
       "perPage": "4"
     }
   }
