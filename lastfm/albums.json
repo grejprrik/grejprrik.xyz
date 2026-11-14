@@ -3,6 +3,70 @@
     "album": [
       {
         "artist": {
+          "url": "https://www.last.fm/music/Sublime",
+          "name": "Sublime",
+          "mbid": "dc39fca5-3b00-45b7-a8f7-1ec47d1433ff"
+        },
+        "image": [
+          {
+            "size": "small",
+            "#text": "https://lastfm-img.freetls.fastly.net/i/u/34s/41035efdd80afecde40410c7c5e0e739.jpg"
+          },
+          {
+            "size": "medium",
+            "#text": "https://lastfm-img.freetls.fastly.net/i/u/64s/41035efdd80afecde40410c7c5e0e739.jpg"
+          },
+          {
+            "size": "large",
+            "#text": "https://lastfm-img.freetls.fastly.net/i/u/174s/41035efdd80afecde40410c7c5e0e739.jpg"
+          },
+          {
+            "size": "extralarge",
+            "#text": "https://lastfm-img.freetls.fastly.net/i/u/300x300/41035efdd80afecde40410c7c5e0e739.jpg"
+          }
+        ],
+        "mbid": "",
+        "url": "https://www.last.fm/music/Sublime/40oz.+To+Freedom",
+        "playcount": "21",
+        "@attr": {
+          "rank": "1"
+        },
+        "name": "40oz. To Freedom"
+      },
+      {
+        "artist": {
+          "url": "https://www.last.fm/music/Crimpshrine",
+          "name": "Crimpshrine",
+          "mbid": "16615a4c-ccb6-4ea8-9617-e3e0d71f51a9"
+        },
+        "image": [
+          {
+            "size": "small",
+            "#text": "https://lastfm-img.freetls.fastly.net/i/u/34s/ab751b3a5b5241f185260ab34281a376.jpg"
+          },
+          {
+            "size": "medium",
+            "#text": "https://lastfm-img.freetls.fastly.net/i/u/64s/ab751b3a5b5241f185260ab34281a376.jpg"
+          },
+          {
+            "size": "large",
+            "#text": "https://lastfm-img.freetls.fastly.net/i/u/174s/ab751b3a5b5241f185260ab34281a376.jpg"
+          },
+          {
+            "size": "extralarge",
+            "#text": "https://lastfm-img.freetls.fastly.net/i/u/300x300/ab751b3a5b5241f185260ab34281a376.jpg"
+          }
+        ],
+        "mbid": "29ba5d8a-e6cd-4507-adef-eeded7533d18",
+        "url": "https://www.last.fm/music/Crimpshrine/Duct+Tape+Soup",
+        "playcount": "2",
+        "@attr": {
+          "rank": "2"
+        },
+        "name": "Duct Tape Soup"
+      },
+      {
+        "artist": {
           "url": "https://www.last.fm/music/Depeche+Mode",
           "name": "Depeche Mode",
           "mbid": "8538e728-ca0b-4321-b7e5-cff6565dd4c0"
@@ -27,114 +91,50 @@
         ],
         "mbid": "",
         "url": "https://www.last.fm/music/Depeche+Mode/Songs+of+Faith+and+Devotion+(Deluxe)",
-        "playcount": "14",
+        "playcount": "2",
         "@attr": {
-          "rank": "1"
+          "rank": "3"
         },
         "name": "Songs of Faith and Devotion (Deluxe)"
       },
       {
         "artist": {
-          "url": "https://www.last.fm/music/Linkin+Park",
-          "name": "Linkin Park",
-          "mbid": "f59c5520-5f46-4d2c-b2c4-822eabf53419"
+          "url": "https://www.last.fm/music/Green+Day",
+          "name": "Green Day",
+          "mbid": "084308bd-1654-436f-ba03-df6697104e19"
         },
         "image": [
           {
             "size": "small",
-            "#text": "https://lastfm-img.freetls.fastly.net/i/u/34s/c21b3923a4d3ff5629996f3f8e178140.jpg"
+            "#text": "https://lastfm-img.freetls.fastly.net/i/u/34s/5bcb675866706c229ad9f77188b8ac44.jpg"
           },
           {
             "size": "medium",
-            "#text": "https://lastfm-img.freetls.fastly.net/i/u/64s/c21b3923a4d3ff5629996f3f8e178140.jpg"
+            "#text": "https://lastfm-img.freetls.fastly.net/i/u/64s/5bcb675866706c229ad9f77188b8ac44.jpg"
           },
           {
             "size": "large",
-            "#text": "https://lastfm-img.freetls.fastly.net/i/u/174s/c21b3923a4d3ff5629996f3f8e178140.jpg"
+            "#text": "https://lastfm-img.freetls.fastly.net/i/u/174s/5bcb675866706c229ad9f77188b8ac44.jpg"
           },
           {
             "size": "extralarge",
-            "#text": "https://lastfm-img.freetls.fastly.net/i/u/300x300/c21b3923a4d3ff5629996f3f8e178140.jpg"
+            "#text": "https://lastfm-img.freetls.fastly.net/i/u/300x300/5bcb675866706c229ad9f77188b8ac44.jpg"
           }
         ],
-        "mbid": "04b8953c-969a-423a-8847-ccf78b83d013",
-        "url": "https://www.last.fm/music/Linkin+Park/Hybrid+Theory",
+        "mbid": "111fa0e4-567f-4b5f-a206-78f5e01de265",
+        "url": "https://www.last.fm/music/Green+Day/American+Idiot",
         "playcount": "2",
-        "@attr": {
-          "rank": "2"
-        },
-        "name": "Hybrid Theory"
-      },
-      {
-        "artist": {
-          "url": "https://www.last.fm/music/Darwin%27s+Waiting+Room",
-          "name": "Darwin's Waiting Room",
-          "mbid": "739bc995-11b9-4e39-94f9-f75b429da8fe"
-        },
-        "image": [
-          {
-            "size": "small",
-            "#text": "https://lastfm-img.freetls.fastly.net/i/u/34s/3f0307da0bef4fcc0dcdb92a3d9c014b.png"
-          },
-          {
-            "size": "medium",
-            "#text": "https://lastfm-img.freetls.fastly.net/i/u/64s/3f0307da0bef4fcc0dcdb92a3d9c014b.png"
-          },
-          {
-            "size": "large",
-            "#text": "https://lastfm-img.freetls.fastly.net/i/u/174s/3f0307da0bef4fcc0dcdb92a3d9c014b.png"
-          },
-          {
-            "size": "extralarge",
-            "#text": "https://lastfm-img.freetls.fastly.net/i/u/300x300/3f0307da0bef4fcc0dcdb92a3d9c014b.png"
-          }
-        ],
-        "mbid": "595088ee-8264-453a-9520-b6b61874e920",
-        "url": "https://www.last.fm/music/Darwin%27s+Waiting+Room/Orphan",
-        "playcount": "1",
-        "@attr": {
-          "rank": "3"
-        },
-        "name": "Orphan"
-      },
-      {
-        "artist": {
-          "url": "https://www.last.fm/music/Depeche+Mode",
-          "name": "Depeche Mode",
-          "mbid": "8538e728-ca0b-4321-b7e5-cff6565dd4c0"
-        },
-        "image": [
-          {
-            "size": "small",
-            "#text": "https://lastfm-img.freetls.fastly.net/i/u/34s/b725be17756c1ff17b6ba3e36e18e8ed.png"
-          },
-          {
-            "size": "medium",
-            "#text": "https://lastfm-img.freetls.fastly.net/i/u/64s/b725be17756c1ff17b6ba3e36e18e8ed.png"
-          },
-          {
-            "size": "large",
-            "#text": "https://lastfm-img.freetls.fastly.net/i/u/174s/b725be17756c1ff17b6ba3e36e18e8ed.png"
-          },
-          {
-            "size": "extralarge",
-            "#text": "https://lastfm-img.freetls.fastly.net/i/u/300x300/b725be17756c1ff17b6ba3e36e18e8ed.png"
-          }
-        ],
-        "mbid": "",
-        "url": "https://www.last.fm/music/Depeche+Mode/Music+for+the+Masses+(Bonus+Track+Version)",
-        "playcount": "1",
         "@attr": {
           "rank": "4"
         },
-        "name": "Music for the Masses (Bonus Track Version)"
+        "name": "American Idiot"
       }
     ],
     "@attr": {
       "user": "grejprrik",
-      "totalPages": "4",
+      "totalPages": "5",
       "page": "1",
-      "total": "13",
+      "total": "17",
       "perPage": "4"
     }
   }
