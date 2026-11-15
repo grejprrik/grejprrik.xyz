@@ -67,38 +67,6 @@
       },
       {
         "artist": {
-          "url": "https://www.last.fm/music/Depeche+Mode",
-          "name": "Depeche Mode",
-          "mbid": "8538e728-ca0b-4321-b7e5-cff6565dd4c0"
-        },
-        "image": [
-          {
-            "size": "small",
-            "#text": "https://lastfm-img.freetls.fastly.net/i/u/34s/7d25e97867a96c8e1c982371993b3219.jpg"
-          },
-          {
-            "size": "medium",
-            "#text": "https://lastfm-img.freetls.fastly.net/i/u/64s/7d25e97867a96c8e1c982371993b3219.jpg"
-          },
-          {
-            "size": "large",
-            "#text": "https://lastfm-img.freetls.fastly.net/i/u/174s/7d25e97867a96c8e1c982371993b3219.jpg"
-          },
-          {
-            "size": "extralarge",
-            "#text": "https://lastfm-img.freetls.fastly.net/i/u/300x300/7d25e97867a96c8e1c982371993b3219.jpg"
-          }
-        ],
-        "mbid": "",
-        "url": "https://www.last.fm/music/Depeche+Mode/Songs+of+Faith+and+Devotion+(Deluxe)",
-        "playcount": "2",
-        "@attr": {
-          "rank": "3"
-        },
-        "name": "Songs of Faith and Devotion (Deluxe)"
-      },
-      {
-        "artist": {
           "url": "https://www.last.fm/music/Green+Day",
           "name": "Green Day",
           "mbid": "084308bd-1654-436f-ba03-df6697104e19"
@@ -125,16 +93,48 @@
         "url": "https://www.last.fm/music/Green+Day/American+Idiot",
         "playcount": "2",
         "@attr": {
-          "rank": "4"
+          "rank": "3"
         },
         "name": "American Idiot"
+      },
+      {
+        "artist": {
+          "url": "https://www.last.fm/music/Malomocnost+Pr%C3%A1zdnoty",
+          "name": "Malomocnost Prázdnoty",
+          "mbid": ""
+        },
+        "image": [
+          {
+            "size": "small",
+            "#text": "https://lastfm-img.freetls.fastly.net/i/u/34s/c67207e77256b45423afc5a84af1294e.jpg"
+          },
+          {
+            "size": "medium",
+            "#text": "https://lastfm-img.freetls.fastly.net/i/u/64s/c67207e77256b45423afc5a84af1294e.jpg"
+          },
+          {
+            "size": "large",
+            "#text": "https://lastfm-img.freetls.fastly.net/i/u/174s/c67207e77256b45423afc5a84af1294e.jpg"
+          },
+          {
+            "size": "extralarge",
+            "#text": "https://lastfm-img.freetls.fastly.net/i/u/300x300/c67207e77256b45423afc5a84af1294e.jpg"
+          }
+        ],
+        "mbid": "",
+        "url": "https://www.last.fm/music/Malomocnost+Pr%C3%A1zdnoty/P%C5%99esta%C5%88+v%C4%9B%C5%99it",
+        "playcount": "2",
+        "@attr": {
+          "rank": "4"
+        },
+        "name": "Přestaň věřit"
       }
     ],
     "@attr": {
       "user": "grejprrik",
-      "totalPages": "5",
+      "totalPages": "4",
       "page": "1",
-      "total": "17",
+      "total": "16",
       "perPage": "4"
     }
   }
